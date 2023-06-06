@@ -10,11 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: AdopterRepository::class)]
 class Adopter extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column(length: 50)]
     private ?string $firstName = null;
 
@@ -41,12 +36,6 @@ class Adopter extends User
     }
 
     
-    
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getFirstName(): ?string
     {

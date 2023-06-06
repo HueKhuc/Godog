@@ -10,10 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: BreederRepository::class)]
 class Breeder extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
 
     #[ORM\Column(length: 50)]
     private ?string $name = null;
@@ -25,11 +21,6 @@ class Breeder extends User
     {
         parent::__construct();
         $this->annoucements = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getName(): ?string
