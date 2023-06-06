@@ -15,8 +15,7 @@ class Request
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Adopter::class, mappedBy: 'requests')]
-    private Collection $adopters;
+
 
     #[ORM\OneToMany(mappedBy: 'request', targetEntity: Message::class)]
     private Collection $messages;
@@ -28,9 +27,13 @@ class Request
     #[ORM\ManyToMany(targetEntity: Dog::class, mappedBy: 'requests')]
     private Collection $dogs;
 
+    #[ORM\ManyToOne(inversedBy: 'requests')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Adopter $adopter = null;
+
     public function __construct()
     {
-        $this->adopters = new ArrayCollection();
+        
         $this->messages = new ArrayCollection();
         $this->dogs = new ArrayCollection();
     }
@@ -40,33 +43,9 @@ class Request
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Adopter>
-     */
-    public function getAdopters(): Collection
-    {
-        return $this->adopters;
-    }
+    
 
-    public function addAdopter(Adopter $adopter): self
-    {
-        if (!$this->adopters->contains($adopter)) {
-            $this->adopters->add($adopter);
-            $adopter->addRequest($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAdopter(Adopter $adopter): self
-    {
-        if ($this->adopters->removeElement($adopter)) {
-            $adopter->removeRequest($this);
-        }
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Message>
      */
@@ -132,6 +111,18 @@ class Request
         if ($this->dogs->removeElement($dog)) {
             $dog->removeRequest($this);
         }
+
+        return $this;
+    }
+
+    public function getAdopter(): ?Adopter
+    {
+        return $this->adopter;
+    }
+
+    public function setAdopter(?Adopter $adopter): self
+    {
+        $this->adopter = $adopter;
 
         return $this;
     }

@@ -32,9 +32,14 @@ class Anoucement
     #[ORM\OneToMany(mappedBy: 'annoucement', targetEntity: Request::class)]
     private Collection $requests;
 
+    #[ORM\OneToMany(mappedBy: 'anoucement', targetEntity: Dog::class)]
+    private Collection $dogs;
+
+
     public function __construct()
     {
         $this->requests = new ArrayCollection();
+        $this->dogs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,6 +91,36 @@ class Anoucement
     public function setBreeder(?Breeder $breeder): self
     {
         $this->breeder = $breeder;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Dog>
+     */
+    public function getDogs(): Collection
+    {
+        return $this->dogs;
+    }
+
+    public function addDog(Dog $dog): self
+    {
+        if (!$this->dogs->contains($dog)) {
+            $this->dogs->add($dog);
+            $dog->setAnoucement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDog(Dog $dog): self
+    {
+        if ($this->dogs->removeElement($dog)) {
+            // set the owning side to null (unless already changed)
+            if ($dog->getAnoucement() === $this) {
+                $dog->setAnoucement(null);
+            }
+        }
 
         return $this;
     }

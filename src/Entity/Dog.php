@@ -40,6 +40,10 @@ class Dog
     #[ORM\ManyToMany(targetEntity: Race::class, mappedBy: 'dogs')]
     private Collection $races;
 
+    #[ORM\ManyToOne(inversedBy: 'dogs')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Anoucement $anoucement = null;
+
     public function __construct()
     {
         $this->requests = new ArrayCollection();
@@ -88,7 +92,7 @@ class Dog
         return $this;
     }
 
-    public function isIsTolerant(): ?bool
+    public function getIsTolerant(): ?bool
     {
         return $this->isTolerant;
     }
@@ -100,7 +104,7 @@ class Dog
         return $this;
     }
 
-    public function isIsLOF(): ?bool
+    public function getIsLOF(): ?bool
     {
         return $this->isLOF;
     }
@@ -189,6 +193,18 @@ class Dog
         if ($this->races->removeElement($race)) {
             $race->removeDog($this);
         }
+
+        return $this;
+    }
+
+    public function getAnoucement(): ?Anoucement
+    {
+        return $this->anoucement;
+    }
+
+    public function setAnoucement(?Anoucement $anoucement): self
+    {
+        $this->anoucement = $anoucement;
 
         return $this;
     }

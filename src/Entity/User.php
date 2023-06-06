@@ -20,16 +20,16 @@ class User
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    protected ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $email = null;
+    protected ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $password = null;
+    protected ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class)]
-    private Collection $messages;
+    protected Collection $messages;
 
     public function __construct()
     {

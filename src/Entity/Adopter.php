@@ -27,19 +27,21 @@ class Adopter extends User
     #[ORM\Column(length: 50)]
     private ?string $department = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $mail = null;
 
     #[ORM\Column(length: 50)]
     private ?string $phone = null;
 
-    #[ORM\ManyToMany(targetEntity: Request::class, inversedBy: 'adopters')]
+    #[ORM\OneToMany(mappedBy: 'adopter', targetEntity: Request::class)]
     private Collection $requests;
 
     public function __construct()
     {
+        parent::__construct();
         $this->requests = new ArrayCollection();
     }
+
+    
+    
 
     public function getId(): ?int
     {
@@ -94,17 +96,7 @@ class Adopter extends User
         return $this;
     }
 
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
 
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
 
     public function getPhone(): ?string
     {
@@ -130,6 +122,7 @@ class Adopter extends User
     {
         if (!$this->requests->contains($request)) {
             $this->requests->add($request);
+            $request->setAdopter($this);
         }
 
         return $this;
@@ -137,8 +130,14 @@ class Adopter extends User
 
     public function removeRequest(Request $request): self
     {
-        $this->requests->removeElement($request);
+        if ($this->requests->removeElement($request)) {
+            // set the owning side to null (unless already changed)
+            if ($request->getAdopter() === $this) {
+                $request->setAdopter(null);
+            }
+        }
 
         return $this;
     }
+
 }
