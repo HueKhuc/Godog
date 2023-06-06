@@ -8,4 +8,4 @@ We work with Bootstrap, Symfony and MySQL
 
 Here is the MCD of the project, made with Looping :
 
-![Image du MCD](public/images/MCD.jpg)
+![Image du MCD](public/images/MCD.png)
