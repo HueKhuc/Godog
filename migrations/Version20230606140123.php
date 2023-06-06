@@ -14,7 +14,7 @@ final class Version20230606140123 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'base de donnée godog';
     }
 
     public function up(Schema $schema): void
