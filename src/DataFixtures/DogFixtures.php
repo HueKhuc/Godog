@@ -3,14 +3,23 @@
 namespace App\DataFixtures;
 
 use App\Entity\Dog;
+use App\Repository\RaceRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class DogFixtures extends Fixture
+class DogFixtures extends Fixture implements DependentFixtureInterface
 {
+    protected RaceRepository $raceRepository;
+
+    public function __construct(RaceRepository $raceRepository)
+    {
+        $this->raceRepository = $raceRepository;
+    }
+
     public function load(ObjectManager $manager): void
     {
-        $dogsinfo = [
+        $dogsInfo = [
             [
                 'name' => 'Mali',
                 'background' => 'Mali est une chienne un peu timide, mais une fois sa confiance gagnée elle se révèle affectueuse et pot de colle',
@@ -53,16 +62,37 @@ class DogFixtures extends Fixture
             ],
         ];
 
-        foreach ($dogsinfo as $chien){
-        $dog = new Dog();
-        $dog->setName($chien['name']);
-        $dog->setBackground($chien['background']);
-        $dog->setDescription($chien['description']);
-        $dog->setIsLOF($chien['isLOF']);
-        $dog->setIsTolerant($chien['isTolerant']);
+        $races = $this->raceRepository->findAll();
 
-        $manager->persist($dog);
-}
+        foreach ($dogsInfo as $dogInfo) {
+            $dog = new Dog();
+            $dog->setName($dogInfo['name']);
+            $dog->setBackground($dogInfo['background']);
+            $dog->setDescription($dogInfo['description']);
+            $dog->setIsLOF($dogInfo['isLOF']);
+            $dog->setIsTolerant($dogInfo['isTolerant']);
+
+            $nbRaces = 1;
+            if (!$dog->getIsLOF()) {
+                $nbRaces = mt_rand(1, 4);
+            }
+
+            for ($i = 1; $i <= $nbRaces; $i++) {
+                $index = mt_rand(0, count($races) - 1);
+
+                $dog->addRace($races[$index]);
+            }
+
+            $manager->persist($dog);
+        }
         $manager->flush();
+    }
+
+
+    public function getDependencies(): array
+    {
+        return [
+            RaceFixtures::class,
+        ];
     }
 }
