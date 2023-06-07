@@ -15,14 +15,14 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Adopter[]    findAll()
  * @method Adopter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdopterRepository extends UserRepository
+class AdopterRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Adopter::class);
     }
 
-    public function save(User $entity, bool $flush = false): void
+    public function save(Adopter $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +31,7 @@ class AdopterRepository extends UserRepository
         }
     }
 
-    public function remove(User $entity, bool $flush = false): void
+    public function remove(Adopter $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
