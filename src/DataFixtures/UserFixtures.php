@@ -133,23 +133,17 @@ class UserFixtures extends Fixture
             $manager->persist($user);
         }
 
-        $userAdmin = [
-                'pass' => '0000',
-                'email' => 'admin@yahoo.com',
-        ];
 
-        foreach ($userAdmin as $email => $infos) {
 
             // create objects
             $user = new Admin();
-            $user->setEmail($email);
+            $user->setEmail('admin@yahoo.com');
 
-            $password = $this->hasher->hashPassword($user, $password);
+            $password = $this->hasher->hashPassword($user, '0000');
 
             $user->setPassword($password);
 
             $manager->persist($user);
-        }
 
         // save all to database
         $manager->flush();
