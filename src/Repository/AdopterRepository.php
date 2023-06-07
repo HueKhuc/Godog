@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Adopter;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,14 +15,14 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Adopter[]    findAll()
  * @method Adopter[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdopterRepository extends ServiceEntityRepository
+class AdopterRepository extends UserRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Adopter::class);
     }
 
-    public function save(Adopter $entity, bool $flush = false): void
+    public function save(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +31,7 @@ class AdopterRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Adopter $entity, bool $flush = false): void
+    public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -39,7 +40,7 @@ class AdopterRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
+    //    /**
 //     * @return Adopter[] Returns an array of Adopter objects
 //     */
 //    public function findByExampleField($value): array
@@ -54,7 +55,7 @@ class AdopterRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Adopter
+    //    public function findOneBySomeField($value): ?Adopter
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

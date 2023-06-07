@@ -23,6 +23,17 @@ class Breeder extends User
         $this->annoucements = new ArrayCollection();
     }
 
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = parent::getRoles();
+        $roles[] = 'ROLE_BREEDER';
+
+        return array_unique($roles);
+    }
+
     public function getName(): ?string
     {
         return $this->name;

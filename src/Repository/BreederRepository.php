@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Breeder;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,14 +15,14 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Breeder[]    findAll()
  * @method Breeder[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BreederRepository extends ServiceEntityRepository
+class BreederRepository extends UserRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Breeder::class);
     }
 
-    public function save(Breeder $entity, bool $flush = false): void
+    public function save(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +31,7 @@ class BreederRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Breeder $entity, bool $flush = false): void
+    public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -39,7 +40,7 @@ class BreederRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
+    //    /**
 //     * @return Breeder[] Returns an array of Breeder objects
 //     */
 //    public function findByExampleField($value): array
@@ -54,7 +55,7 @@ class BreederRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Breeder
+    //    public function findOneBySomeField($value): ?Breeder
 //    {
 //        return $this->createQueryBuilder('b')
 //            ->andWhere('b.exampleField = :val')
