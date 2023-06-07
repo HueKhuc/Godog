@@ -2,7 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Anoucement;
 use App\Entity\Dog;
+use App\Repository\AnoucementRepository;
 use App\Repository\RaceRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -11,10 +13,12 @@ use Doctrine\Persistence\ObjectManager;
 class DogFixtures extends Fixture implements DependentFixtureInterface
 {
     protected RaceRepository $raceRepository;
+    protected AnoucementRepository $anoucementRepository;
 
-    public function __construct(RaceRepository $raceRepository)
+    public function __construct(RaceRepository $raceRepository, AnoucementRepository $anoucementRepository)
     {
         $this->raceRepository = $raceRepository;
+        $this->anoucementRepository = $anoucementRepository;
     }
 
     public function load(ObjectManager $manager): void
@@ -63,6 +67,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
         ];
 
         $races = $this->raceRepository->findAll();
+        $anoucements = $this->anoucementRepository->findAll();
 
         foreach ($dogsInfo as $dogInfo) {
             $dog = new Dog();
@@ -83,6 +88,9 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 $dog->addRace($races[$index]);
             }
 
+            $i = mt_rand(0, count($anoucements)-1);
+            $dog->setAnoucement($anoucements[$i]);
+
             $manager->persist($dog);
         }
         $manager->flush();
@@ -93,6 +101,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             RaceFixtures::class,
+            AnoucementFixtures::class,
         ];
     }
 }
