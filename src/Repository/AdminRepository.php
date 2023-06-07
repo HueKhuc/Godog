@@ -15,14 +15,14 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Admin[]    findAll()
  * @method Admin[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdminRepository extends UserRepository
+class AdminRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Admin::class);
     }
 
-    public function save(User $entity, bool $flush = false): void
+    public function save(Admin $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +31,7 @@ class AdminRepository extends UserRepository
         }
     }
 
-    public function remove(User $entity, bool $flush = false): void
+    public function remove(Admin $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

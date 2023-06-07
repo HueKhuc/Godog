@@ -15,14 +15,14 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Breeder[]    findAll()
  * @method Breeder[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BreederRepository extends UserRepository
+class BreederRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Breeder::class);
     }
 
-    public function save(User $entity, bool $flush = false): void
+    public function save(Breeder $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +31,7 @@ class BreederRepository extends UserRepository
         }
     }
 
-    public function remove(User $entity, bool $flush = false): void
+    public function remove(Breeder $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
