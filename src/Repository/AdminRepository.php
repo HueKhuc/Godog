@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Admin;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,14 +15,14 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Admin[]    findAll()
  * @method Admin[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdminRepository extends ServiceEntityRepository
+class AdminRepository extends UserRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Admin::class);
     }
 
-    public function save(Admin $entity, bool $flush = false): void
+    public function save(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +31,7 @@ class AdminRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Admin $entity, bool $flush = false): void
+    public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -39,7 +40,7 @@ class AdminRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
+    //    /**
 //     * @return Admin[] Returns an array of Admin objects
 //     */
 //    public function findByExampleField($value): array
@@ -54,7 +55,7 @@ class AdminRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Admin
+    //    public function findOneBySomeField($value): ?Admin
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

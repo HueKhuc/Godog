@@ -35,7 +35,18 @@ class Adopter extends User
         $this->requests = new ArrayCollection();
     }
 
-    
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = parent::getRoles();
+        $roles[] = 'ROLE_ADOPTER';
+
+        return array_unique($roles);
+    }
+
+
 
     public function getFirstName(): ?string
     {

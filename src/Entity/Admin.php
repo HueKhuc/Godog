@@ -9,4 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: '`admin`')]
 class Admin extends User
 {
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = parent::getRoles();
+        $roles[] = 'ROLE_ADMIN';
+
+        return array_unique($roles);
+    }
 }
