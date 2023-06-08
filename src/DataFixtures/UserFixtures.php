@@ -38,7 +38,7 @@ class UserFixtures extends Fixture
 
                 [
                 'password' => '2020',
-                'email' => 'roanna@spa.com',
+                'email' => 'roaa@spa.com',
                 'firstName'=> 'David',
                 'lastName'=> 'C',
                 'city'=> 'Lyon',
@@ -106,7 +106,7 @@ class UserFixtures extends Fixture
             ],
             'SPA de Roanna' => [
                 'pass' => '3030',
-                'email' => 'roanna@spa.com',
+                'email' => 'rotary@spa.com',
             ],
             'SPA de Paris' => [
                 'pass' => '4040',
