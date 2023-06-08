@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -17,6 +18,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
     'breeder' => Breeder::class,
     'admin' => Admin::class,
 ])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -32,6 +34,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column(length: 255)]
     protected ?string $password = null;
+    protected ?string $plainPassword = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Message::class)]
     protected Collection $messages;
@@ -131,6 +134,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
+
+	/**
+	 * @return 
+	 */
+	public function getPlainPassword(): ?string {
+		return $this->plainPassword;
+	}
+	
+	/**
+	 * @param  $plainPassword 
+	 * @return self
+	 */
+	public function setPlainPassword(?string $plainPassword): self {
+		$this->plainPassword = $plainPassword;
+		return $this;
+	}
 }

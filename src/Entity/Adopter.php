@@ -10,25 +10,52 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: AdopterRepository::class)]
 class Adopter extends User
 {
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
+    /**
+     * Summary of firstName
+     * @var 
+     */
     private ?string $firstName = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
+    /**
+     * Summary of lastName
+     * @var 
+     */
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
+    /**
+     * Summary of city
+     * @var 
+     */
     private ?string $city = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
+    /**
+     * Summary of department
+     * @var 
+     */
     private ?string $department = null;
 
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
+    /**
+     * Summary of phone
+     * @var 
+     */
     private ?string $phone = null;
 
     #[ORM\OneToMany(mappedBy: 'adopter', targetEntity: Request::class)]
+    /**
+     * Summary of requests
+     * @var Collection
+     */
     private Collection $requests;
 
+    /**
+     * Summary of __construct
+     */
     public function __construct()
     {
         parent::__construct();
@@ -48,11 +75,20 @@ class Adopter extends User
 
 
 
+    /**
+     * Summary of getFirstName
+     * @return string|null
+     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
+    /**
+     * Summary of setFirstName
+     * @param mixed $firstName
+     * @return \App\Entity\Adopter
+     */
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
@@ -60,11 +96,20 @@ class Adopter extends User
         return $this;
     }
 
+    /**
+     * Summary of getLastName
+     * @return string|null
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
+    /**
+     * Summary of setLastName
+     * @param mixed $lastName
+     * @return \App\Entity\Adopter
+     */
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
@@ -72,11 +117,20 @@ class Adopter extends User
         return $this;
     }
 
+    /**
+     * Summary of getCity
+     * @return string|null
+     */
     public function getCity(): ?string
     {
         return $this->city;
     }
 
+    /**
+     * Summary of setCity
+     * @param mixed $city
+     * @return \App\Entity\Adopter
+     */
     public function setCity(string $city): self
     {
         $this->city = $city;
@@ -84,11 +138,20 @@ class Adopter extends User
         return $this;
     }
 
+    /**
+     * Summary of getDepartment
+     * @return string|null
+     */
     public function getDepartment(): ?string
     {
         return $this->department;
     }
 
+    /**
+     * Summary of setDepartment
+     * @param mixed $department
+     * @return \App\Entity\Adopter
+     */
     public function setDepartment(string $department): self
     {
         $this->department = $department;
@@ -98,11 +161,20 @@ class Adopter extends User
 
 
 
+    /**
+     * Summary of getPhone
+     * @return string|null
+     */
     public function getPhone(): ?string
     {
         return $this->phone;
     }
 
+    /**
+     * Summary of setPhone
+     * @param mixed $phone
+     * @return \App\Entity\Adopter
+     */
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
@@ -118,6 +190,11 @@ class Adopter extends User
         return $this->requests;
     }
 
+    /**
+     * Summary of addRequest
+     * @param \App\Entity\Request $request
+     * @return \App\Entity\Adopter
+     */
     public function addRequest(Request $request): self
     {
         if (!$this->requests->contains($request)) {
@@ -128,6 +205,11 @@ class Adopter extends User
         return $this;
     }
 
+    /**
+     * Summary of removeRequest
+     * @param \App\Entity\Request $request
+     * @return \App\Entity\Adopter
+     */
     public function removeRequest(Request $request): self
     {
         if ($this->requests->removeElement($request)) {
