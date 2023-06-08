@@ -34,7 +34,7 @@ class Dog
     #[ORM\ManyToMany(targetEntity: Request::class, inversedBy: 'dogs')]
     private Collection $requests;
 
-    #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Picture::class)]
+    #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Picture::class, cascade: ['persist', 'remove'])]
     private Collection $pictures;
 
     #[ORM\ManyToMany(targetEntity: Race::class, mappedBy: 'dogs')]

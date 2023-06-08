@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Anoucement;
 use App\Entity\Dog;
+use App\Entity\Picture;
 use App\Repository\AnoucementRepository;
 use App\Repository\RaceRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -66,6 +67,22 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
             ],
         ];
 
+        $images = [
+            'american-staffordshire-terrier_2.jpg',
+            'basenji.jpg',
+            'basset-des-alpes.jpg',
+            'basset-hound.jpg',
+            'berger-americain-miniature.jpg',
+            'berger-blanc-suisse.jpg',
+            'berger-de-maremme-et-des-abruzzes.jpg',
+            'berger-du-massif-du-karst.jpg',
+            'boerbull.jpg',
+            'brachet-autrichien-noir-et-feu.jpg',
+            'braque-hongrois-a-poil-court.jpg',
+            'chien-courant-hamilton.jpg',
+            'chien-rouge-de-baviere.jpg',
+        ];
+
         $races = $this->raceRepository->findAll();
         $anoucements = $this->anoucementRepository->findAll();
 
@@ -86,6 +103,19 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 $index = mt_rand(0, count($races) - 1);
 
                 $dog->addRace($races[$index]);
+            }
+
+            $nbImages = mt_rand(1, 5);
+
+            for ($i = 1; $i <= $nbImages; $i++) {
+                $index = mt_rand(0, count($images) - 1);
+
+                $picture = new Picture();
+                $picture->setLink($images[$index]);
+                $picture->setTitle('Lorem');
+                $picture->setDescription('Lorem');
+
+                $dog->addPicture($picture);
             }
 
             $i = mt_rand(0, count($anoucements)-1);
