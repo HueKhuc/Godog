@@ -154,4 +154,16 @@ class Announcement
 
         return $this;
     }
+
+    public function getPictures(): array
+    {
+        $pictures = [];
+        foreach ($this->getDogs() as $dog) {
+            foreach ($dog->getPictures() as $picture) {
+                $pictures[] = $picture;
+            }
+        }
+        shuffle($pictures);
+        return $pictures;
+    }
 }

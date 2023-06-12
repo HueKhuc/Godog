@@ -1,28 +1,76 @@
 {% extends 'base.html.twig' %}
-{# {% block title %}Home{% endblock %} #}
+
+{% block title %}Home Page
+{% endblock %}
+
+
 {% block body %}
-  {% block bloc2 %}
-    <h1 class="text-center">ANNOUNCEMENT'S LIST</h1>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col" class="text-center">#</th>
-          <th scope="col" class="text-center">Breeder's name</th>
-          <th scope="col" class="text-center">Announces availables</th>
-          <th scope="col" class="text-center">Announces taken</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-       
-      {% for breeder in breeders %}  
-        <tr>
-          <th scope="row" class="align-middle"></th>
-          <td class="text-center align-middle">{{breeder.name}}</td>
-          <td class="text-center align-middle">{{breeder.nbAn}}</td>
-          <td class="text-center align-middle"></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  {% endblock bloc2 %}
+	<h1 class="text-center">Recent Announcements</h1>
+	<div>
+		<ul class="container text-center">
+
+			{% for anoucement in anoucements %}
+				<li class="mt-5">
+					<h3>{{ anoucement.title }}</h3>
+
+					<p>Last updated:
+						{{ anoucement.dateAnoucement|date('Y-m-d H:i:s') }}</p>
+
+					{# show dog pics #}
+					{# {% set pictureCount = 0 %}
+					{% for dog in anoucement.dogs %}
+						{% for picture in dog.pictures %}
+							{% if pictureCount < 3 %}
+								<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
+								{% set pictureCount = pictureCount + 1 %}
+							{% endif %}
+						{% endfor %}
+					{% endfor %} #}
+
+					{% for picture in anoucement.pictures|slice(0,3) %}
+						<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
+					{% endfor %}
+
+					{# show dog name #}
+					{% for dog in anoucement.dogs %}
+						<p>Dog name:
+							{{ dog.name }}</p>
+					{% endfor %}
+
+					{# show dog race #}
+					{% for dog in anoucement.dogs %}
+						<p>
+							Dog Race :
+							{% for race in dog.races %}
+								{{race.name ~ ','}}
+							{% endfor %}
+						</p>
+					{% endfor %}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<h1 class="text-center">ANNOUNCEMENT'S LIST</h1>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th scope="col" class="text-center">#</th>
+				<th scope="col" class="text-center">Breeder's name</th>
+				<th scope="col" class="text-center">Announces availables</th>
+				<th scope="col" class="text-center">Announces taken</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+
+			{% for breeder in breeders %}
+				<tr>
+					<th scope="row" class="align-middle"></th>
+					<td class="text-center align-middle">{{breeder.name}}</td>
+					<td class="text-center align-middle">{{breeder.nbAn}}</td>
+					<td class="text-center align-middle"></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock body %}

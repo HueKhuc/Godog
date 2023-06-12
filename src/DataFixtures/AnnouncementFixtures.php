@@ -42,6 +42,16 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
                 'dateannouncement' => '2021-02-07 17:12',
             ],
+            [
+                'title' => 'Anoucement 5',
+                'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
+                'dateAnoucement' => '2021-03-09 19:02',
+            ],
+            [
+                'title' => 'Anoucement 6',
+                'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
+                'dateAnoucement' => '2021-03-11 18:10',
+            ],
         ];
 
         $breeders = $this->breederRepository->findAll();

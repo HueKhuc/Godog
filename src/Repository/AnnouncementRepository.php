@@ -39,22 +39,24 @@ class AnnouncementRepository extends ServiceEntityRepository
         }
     }
 
-    //    /**
-//     * @return announcement[] Returns an array of announcement objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Announcement[] Returns an array of Anoucement objects
+     */
+    //QUERY BULDER FUNCTION does not need settings in repository, instead, do it in controller
+    public function showAnnouncementList(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select([
+                'a',
+            ])
+            ->orderBy('a.dateannouncement', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-    //    public function findOneBySomeField($value): ?announcement
+    //    public function findOneBySomeField($value): ?Anoucement
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')
@@ -62,5 +64,5 @@ class AnnouncementRepository extends ServiceEntityRepository
 //            ->getQuery()
 //            ->getOneOrNullResult()
 //        ;
-//    }     
+//    }
 }
