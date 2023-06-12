@@ -23,7 +23,8 @@ class Announcement
     private ?string $info = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateAnnouncement = null;
+    private ?\DateTimeInterface $dateAnoucement = null;
+    private ?string $pictures = null;
 
     #[ORM\ManyToOne(inversedBy: 'announcements')]
     #[ORM\JoinColumn(nullable: false)]
@@ -34,6 +35,7 @@ class Announcement
 
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class)]
     private Collection $dogs;
+    
 
 
     public function __construct()

@@ -1,20 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AnnouncementsListController!{% endblock %}
+{% block title %}Announcements List
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/Symfony/Godog/src/Controller/AnnouncementsListController.php'|file_link(0) }}">src/Controller/AnnouncementsListController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/Symfony/Godog/templates/announcements_list/index.html.twig'|file_link(0) }}">templates/announcements_list/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<div class="d-flex flex-row gap-5 flex-wrap m- p-3 justify-content-center">
+		{% for announcement in announcements %}
+			<div class="border rounded col-5 p-3">
+				<div class="d-flex flex-row gap-2 justify-content-center">
+					{% for dog in announcement.dogs %}
+						{% for picture in dog.pictures %}
+							<img class="" src="{{asset('images/dogs/' ~ picture.link )}}" alt="" style="width: 120px ; height: 150px">
+						{% endfor %}
+					{% endfor %}
+				</div>
+				<div class="text-center">
+					<ul class="">
+						<li>
+							<h3>
+								{{announcement.title}}
+							</h3>
+						</li>
+						<li>{{announcement.info}}</li>
+						<li>{{'Nombre de chiens : ' ~ announcement.dogs|length}}</li>
+						{% for dog in announcement.dogs %}
+							<li>
+								Race :
+								{% for race in dog.races %}
+									{{race.name ~ ','}}
+								{% endfor %}
+							</li>
+						{% endfor %}
+						<li>Mise à jour le
+							{{announcement.dateAnoucement|date("d/m/Y", "Europe/Paris")}}</li>
+						<li>Eleveur :
+							{{announcement.breeder.name}}</li>
+					</ul>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
