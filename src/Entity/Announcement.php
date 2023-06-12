@@ -23,7 +23,7 @@ class Announcement
     private ?string $info = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateannouncement = null;
+    private ?\DateTimeInterface $dateAnnouncement = null;
 
     #[ORM\ManyToOne(inversedBy: 'announcements')]
     #[ORM\JoinColumn(nullable: false)]
@@ -73,12 +73,12 @@ class Announcement
 
     public function getDateAnnouncement(): ?\DateTimeInterface
     {
-        return $this->dateannouncement;
+        return $this->dateAnnouncement;
     }
 
     public function setDateAnnouncement(\DateTimeInterface $dateAnnouncement): self
     {
-        $this->dateannouncement = $dateAnnouncement;
+        $this->dateAnnouncement = $dateAnnouncement;
 
         return $this;
     }

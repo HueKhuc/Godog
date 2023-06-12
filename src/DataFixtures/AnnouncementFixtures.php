@@ -25,22 +25,22 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
             [
                 'title' => 'announcement 1',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateannouncement' => '2021-02-01 15:23',
+                'dateAnoucement' => '2021-02-01 15:23',
             ],
             [
                 'title' => 'announcement 2',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateannouncement' => '2021-02-03 15:42',
+                'dateAnoucement' => '2021-02-03 15:42',
             ],
             [
                 'title' => 'announcement 3',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateannouncement' => '2021-02-05 16:28',
+                'dateAnoucement' => '2021-02-05 16:28',
             ],
             [
                 'title' => 'announcement 4',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateannouncement' => '2021-02-07 17:12',
+                'dateAnoucement' => '2021-02-07 17:12',
             ],
             [
                 'title' => 'Anoucement 5',
@@ -63,7 +63,7 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
             $announcement->setInfo($info['info']);
             $nb = mt_rand(0, 1000000);
             $date = new DateTime('-' . $nb . ' minutes');
-            $announcement->setDateannouncement($date);
+            $announcement->setDateAnnouncement($date);
             $index = mt_rand(0, count($breeders) - 1);
 
             $announcement->setBreeder($breeders[$index]);

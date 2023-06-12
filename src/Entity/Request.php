@@ -76,12 +76,12 @@ class Request
         return $this;
     }
 
-    public function getannouncement(): ?announcement
+    public function getAnnouncement(): ?Announcement
     {
         return $this->announcement;
     }
 
-    public function setannouncement(?announcement $announcement): self
+    public function setAnnouncement(?Announcement $announcement): self
     {
         $this->announcement = $announcement;
 

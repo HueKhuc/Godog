@@ -14,18 +14,18 @@
 					<h3>{{ anoucement.title }}</h3>
 
 					<p>Last updated:
-						{{ anoucement.dateAnoucement|date('Y-m-d H:i:s') }}</p>
+						{{ anoucement.dateAnnouncement|date('Y-m-d H:i:s') }}</p>
 
 					{# show dog pics #}
 					{# {% set pictureCount = 0 %}
-					{% for dog in anoucement.dogs %}
-						{% for picture in dog.pictures %}
-							{% if pictureCount < 3 %}
-								<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
-								{% set pictureCount = pictureCount + 1 %}
-							{% endif %}
-						{% endfor %}
-					{% endfor %} #}
+										{% for dog in anoucement.dogs %}
+											{% for picture in dog.pictures %}
+												{% if pictureCount < 3 %}
+													<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
+													{% set pictureCount = pictureCount + 1 %}
+												{% endif %}
+											{% endfor %}
+										{% endfor %} #}
 
 					{% for picture in anoucement.pictures|slice(0,3) %}
 						<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
