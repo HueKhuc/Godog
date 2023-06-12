@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Repository\AnoucementRepository;
+use App\Repository\announcementRepository;
 use App\Repository\BreederRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,17 +23,17 @@ class HomeController extends AbstractController
 
     //     return $this->render('home/index.html.twig', [
     //         'breeders' => $breeders,
-            
+
     //     ]);
     // }  
-    
-    // public function anoucement(AnoucementRepository $anoucementRepository): Response
+
+    // public function announcement(announcementRepository $announcementRepository): Response
     // {
-    //     $anoucements = $anoucementRepository->findAll();
-    //     $brans = $anoucementRepository->findAllBran();
+    //     $announcements = $announcementRepository->findAll();
+    //     $brans = $announcementRepository->findAllBran();
 
     //     return $this->render('home/index.html.twig', [
-    //         'anoucements' => $anoucements,
+    //         'announcements' => $announcements,
     //         'brans' => $brans,
     //     ]);
     // } 
