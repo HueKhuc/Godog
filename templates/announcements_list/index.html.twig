@@ -4,14 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<div class="d-flex flex-row gap-5 flex-wrap m- p-3 justify-content-center">
+	<div class="d-flex flex-row gap-5 flex-wrap p-5 justify-content-center">
 		{% for announcement in announcements %}
 			<div class="border rounded col-5 p-3">
 				<div class="d-flex flex-row gap-2 justify-content-center">
-					{% for dog in announcement.dogs %}
-						{% for picture in dog.pictures %}
-							<img class="" src="{{asset('images/dogs/' ~ picture.link )}}" alt="" style="width: 120px ; height: 150px">
-						{% endfor %}
+					{% for picture in announcement.pictures|slice(0,3) %}
+						<img class="" src="{{asset('images/dogs/' ~ picture.link )}}" alt="" style="width: 120px ; height: 150px">
 					{% endfor %}
 				</div>
 				<div class="text-center">

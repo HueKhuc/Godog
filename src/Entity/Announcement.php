@@ -24,7 +24,7 @@ class Announcement
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateAnoucement = null;
-    private ?string $pictures = null;
+    // private ?array $pictures = null;
 
     #[ORM\ManyToOne(inversedBy: 'announcements')]
     #[ORM\JoinColumn(nullable: false)]
@@ -35,7 +35,7 @@ class Announcement
 
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class)]
     private Collection $dogs;
-    
+
 
 
     public function __construct()
@@ -157,7 +157,8 @@ class Announcement
         return $this;
     }
 
-    public function getPictures(): array
+
+    public function getPictures(): ?array
     {
         $pictures = [];
         foreach ($this->getDogs() as $dog) {
