@@ -40,6 +40,11 @@ class BreederRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAll()
+    {      
+        return $this->findBy(array(), array('name' => 'ASC'));
+    }
+
     //    /**
 //     * @return Breeder[] Returns an array of Breeder objects
 //     */
@@ -64,4 +69,16 @@ class BreederRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function findByBreederHome()
+      {
+          return $this->createQueryBuilder('breeder')
+            
+            ->select('breeder.name', 'count(anoucement.id) AS nbAn')            
+            ->leftJoin('breeder.annoucements', 'anoucement')
+            ->groupBy('breeder.name')
+            ->orderBy('anoucement.dateAnoucement')
+            ->getQuery()
+            ->getResult();
+      }
 }
