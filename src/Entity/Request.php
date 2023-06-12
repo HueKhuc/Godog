@@ -22,7 +22,7 @@ class Request
 
     #[ORM\ManyToOne(inversedBy: 'requests')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Anoucement $annoucement = null;
+    private ?announcement $announcement = null;
 
     #[ORM\ManyToMany(targetEntity: Dog::class, mappedBy: 'requests')]
     private Collection $dogs;
@@ -33,7 +33,7 @@ class Request
 
     public function __construct()
     {
-        
+
         $this->messages = new ArrayCollection();
         $this->dogs = new ArrayCollection();
     }
@@ -43,9 +43,9 @@ class Request
         return $this->id;
     }
 
-    
 
-    
+
+
     /**
      * @return Collection<int, Message>
      */
@@ -76,14 +76,14 @@ class Request
         return $this;
     }
 
-    public function getAnnoucement(): ?Anoucement
+    public function getannouncement(): ?announcement
     {
-        return $this->annoucement;
+        return $this->announcement;
     }
 
-    public function setAnnoucement(?Anoucement $annoucement): self
+    public function setannouncement(?announcement $announcement): self
     {
-        $this->annoucement = $annoucement;
+        $this->announcement = $announcement;
 
         return $this;
     }

@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Anoucement;
+use App\Entity\Announcement;
 
 use App\Repository\BreederRepository;
 use DateTime;
@@ -10,7 +10,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class AnoucementFixtures extends Fixture implements DependentFixtureInterface
+class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
 {
     protected BreederRepository $breederRepository;
 
@@ -21,46 +21,46 @@ class AnoucementFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        $anoucementInfo = [
+        $announcementInfo = [
             [
-                'title' => 'Anoucement 1',
+                'title' => 'announcement 1',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-02-01 15:23',
+                'dateannouncement' => '2021-02-01 15:23',
             ],
             [
-                'title' => 'Anoucement 2',
+                'title' => 'announcement 2',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-02-03 15:42',
+                'dateannouncement' => '2021-02-03 15:42',
             ],
             [
-                'title' => 'Anoucement 3',
+                'title' => 'announcement 3',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-02-05 16:28',
+                'dateannouncement' => '2021-02-05 16:28',
             ],
             [
-                'title' => 'Anoucement 4',
+                'title' => 'announcement 4',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-02-07 17:12',
+                'dateannouncement' => '2021-02-07 17:12',
             ],
         ];
 
         $breeders = $this->breederRepository->findAll();
 
-        foreach ($anoucementInfo as $info) {
+        foreach ($announcementInfo as $info) {
 
-            $anoucement = new Anoucement();
-            $anoucement->setTitle($info['title']);
-            $anoucement->setInfo($info['info']);
+            $announcement = new announcement();
+            $announcement->setTitle($info['title']);
+            $announcement->setInfo($info['info']);
             $nb = mt_rand(0, 1000000);
-            $date = new DateTime('-'.$nb.' minutes');
-            $anoucement->setDateAnoucement($date);
+            $date = new DateTime('-' . $nb . ' minutes');
+            $announcement->setDateannouncement($date);
             $index = mt_rand(0, count($breeders) - 1);
 
-            $anoucement->setBreeder($breeders[$index]);
+            $announcement->setBreeder($breeders[$index]);
 
 
 
-            $manager->persist($anoucement);
+            $manager->persist($announcement);
         }
 
         $manager->flush();

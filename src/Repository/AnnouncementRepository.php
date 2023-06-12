@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Anoucement;
+use App\Entity\Announcement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Anoucement>
+ * @extends ServiceEntityRepository<announcement>
  *
- * @method Anoucement|null find($id, $lockMode = null, $lockVersion = null)
- * @method Anoucement|null findOneBy(array $criteria, array $orderBy = null)
- * @method Anoucement[]    findAll()
- * @method Anoucement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method announcement|null find($id, $lockMode = null, $lockVersion = null)
+ * @method announcement|null findOneBy(array $criteria, array $orderBy = null)
+ * @method announcement[]    findAll()
+ * @method announcement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AnoucementRepository extends ServiceEntityRepository
+class AnnouncementRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Anoucement::class);
+        parent::__construct($registry, announcement::class);
     }
 
-    public function save(Anoucement $entity, bool $flush = false): void
+    public function save(announcement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AnoucementRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Anoucement $entity, bool $flush = false): void
+    public function remove(announcement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -39,8 +39,8 @@ class AnoucementRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Anoucement[] Returns an array of Anoucement objects
+    //    /**
+//     * @return announcement[] Returns an array of announcement objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AnoucementRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Anoucement
+    //    public function findOneBySomeField($value): ?announcement
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

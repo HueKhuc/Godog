@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\AnoucementRepository;
+use App\Repository\AnnouncementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: AnoucementRepository::class)]
-class Anoucement
+#[ORM\Entity(repositoryClass: AnnouncementRepository::class)]
+class Announcement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,16 +23,16 @@ class Anoucement
     private ?string $info = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateAnoucement = null;
+    private ?\DateTimeInterface $dateannouncement = null;
 
-    #[ORM\ManyToOne(inversedBy: 'annoucements')]
+    #[ORM\ManyToOne(inversedBy: 'announcements')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Breeder $breeder = null;
 
-    #[ORM\OneToMany(mappedBy: 'annoucement', targetEntity: Request::class)]
+    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Request::class)]
     private Collection $requests;
 
-    #[ORM\OneToMany(mappedBy: 'anoucement', targetEntity: Dog::class)]
+    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class)]
     private Collection $dogs;
 
 
@@ -71,14 +71,14 @@ class Anoucement
         return $this;
     }
 
-    public function getDateAnoucement(): ?\DateTimeInterface
+    public function getDateAnnouncement(): ?\DateTimeInterface
     {
-        return $this->dateAnoucement;
+        return $this->dateannouncement;
     }
 
-    public function setDateAnoucement(\DateTimeInterface $dateAnoucement): self
+    public function setDateAnnouncement(\DateTimeInterface $dateAnnouncement): self
     {
-        $this->dateAnoucement = $dateAnoucement;
+        $this->dateannouncement = $dateAnnouncement;
 
         return $this;
     }
@@ -107,7 +107,7 @@ class Anoucement
     {
         if (!$this->dogs->contains($dog)) {
             $this->dogs->add($dog);
-            $dog->setAnoucement($this);
+            $dog->setAnnouncement($this);
         }
 
         return $this;
@@ -117,8 +117,8 @@ class Anoucement
     {
         if ($this->dogs->removeElement($dog)) {
             // set the owning side to null (unless already changed)
-            if ($dog->getAnoucement() === $this) {
-                $dog->setAnoucement(null);
+            if ($dog->getAnnouncement() === $this) {
+                $dog->setAnnouncement(null);
             }
         }
 
@@ -137,7 +137,7 @@ class Anoucement
     {
         if (!$this->requests->contains($request)) {
             $this->requests->add($request);
-            $request->setAnnoucement($this);
+            $request->setAnnouncement($this);
         }
 
         return $this;
@@ -147,8 +147,8 @@ class Anoucement
     {
         if ($this->requests->removeElement($request)) {
             // set the owning side to null (unless already changed)
-            if ($request->getAnnoucement() === $this) {
-                $request->setAnnoucement(null);
+            if ($request->getAnnouncement() === $this) {
+                $request->setAnnouncement(null);
             }
         }
 

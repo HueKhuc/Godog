@@ -2,10 +2,10 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Anoucement;
+use App\Entity\Announcement;
 use App\Entity\Dog;
 use App\Entity\Picture;
-use App\Repository\AnoucementRepository;
+use App\Repository\AnnouncementRepository;
 use App\Repository\RaceRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -14,12 +14,12 @@ use Doctrine\Persistence\ObjectManager;
 class DogFixtures extends Fixture implements DependentFixtureInterface
 {
     protected RaceRepository $raceRepository;
-    protected AnoucementRepository $anoucementRepository;
+    protected AnnouncementRepository $announcementRepository;
 
-    public function __construct(RaceRepository $raceRepository, AnoucementRepository $anoucementRepository)
+    public function __construct(RaceRepository $raceRepository, announcementRepository $announcementRepository)
     {
         $this->raceRepository = $raceRepository;
-        $this->anoucementRepository = $anoucementRepository;
+        $this->announcementRepository = $announcementRepository;
     }
 
     public function load(ObjectManager $manager): void
@@ -84,7 +84,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
         ];
 
         $races = $this->raceRepository->findAll();
-        $anoucements = $this->anoucementRepository->findAll();
+        $announcements = $this->announcementRepository->findAll();
 
         foreach ($dogsInfo as $dogInfo) {
             $dog = new Dog();
@@ -118,8 +118,8 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 $dog->addPicture($picture);
             }
 
-            $i = mt_rand(0, count($anoucements)-1);
-            $dog->setAnoucement($anoucements[$i]);
+            $i = mt_rand(0, count($announcements) - 1);
+            $dog->setannouncement($announcements[$i]);
 
             $manager->persist($dog);
         }
@@ -131,7 +131,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             RaceFixtures::class,
-            AnoucementFixtures::class,
+            AnnouncementFixtures::class,
         ];
     }
 }

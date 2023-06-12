@@ -14,13 +14,13 @@ class Breeder extends User
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'breeder', targetEntity: Anoucement::class)]
-    private Collection $annoucements;
+    #[ORM\OneToMany(mappedBy: 'breeder', targetEntity: announcement::class)]
+    private Collection $announcements;
 
     public function __construct()
     {
         parent::__construct();
-        $this->annoucements = new ArrayCollection();
+        $this->announcements = new ArrayCollection();
     }
 
     /**
@@ -47,29 +47,29 @@ class Breeder extends User
     }
 
     /**
-     * @return Collection<int, Anoucement>
+     * @return Collection<int, announcement>
      */
-    public function getAnnoucements(): Collection
+    public function getannouncements(): Collection
     {
-        return $this->annoucements;
+        return $this->announcements;
     }
 
-    public function addAnnoucement(Anoucement $annoucement): self
+    public function addannouncement(announcement $announcement): self
     {
-        if (!$this->annoucements->contains($annoucement)) {
-            $this->annoucements->add($annoucement);
-            $annoucement->setBreeder($this);
+        if (!$this->announcements->contains($announcement)) {
+            $this->announcements->add($announcement);
+            $announcement->setBreeder($this);
         }
 
         return $this;
     }
 
-    public function removeAnnoucement(Anoucement $annoucement): self
+    public function removeannouncement(announcement $announcement): self
     {
-        if ($this->annoucements->removeElement($annoucement)) {
+        if ($this->announcements->removeElement($announcement)) {
             // set the owning side to null (unless already changed)
-            if ($annoucement->getBreeder() === $this) {
-                $annoucement->setBreeder(null);
+            if ($announcement->getBreeder() === $this) {
+                $announcement->setBreeder(null);
             }
         }
 
