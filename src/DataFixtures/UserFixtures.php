@@ -26,54 +26,54 @@ class UserFixtures extends Fixture
     {
         // create table that compose users details
         $usersAdopter = [
-                [
+            [
                 'password' => '1020',
                 'email' => 'roanna@spa.com',
-                'firstName'=> 'tata',
-                'lastName'=> 'toto',
-                'city'=> 'Lyon',
-                'department'=>'Rhone',
-                'phone'=> '0660000001',
-                ],
+                'firstName' => 'tata',
+                'lastName' => 'toto',
+                'city' => 'Lyon',
+                'department' => 'Rhone',
+                'phone' => '0660000001',
+            ],
 
-                [
+            [
                 'password' => '2020',
                 'email' => 'roaa@spa.com',
-                'firstName'=> 'David',
-                'lastName'=> 'C',
-                'city'=> 'Lyon',
-                'department'=>'Rhone',
-                'phone'=>'0660000001',
-                ],
+                'firstName' => 'David',
+                'lastName' => 'C',
+                'city' => 'Lyon',
+                'department' => 'Rhone',
+                'phone' => '0660000001',
+            ],
 
-                [
+            [
                 'password' => '3020',
                 'email' => 'peter@spa.com',
-                'firstName'=> 'Peter',
-                'lastName'=> 'k',
-                'city'=> 'Lyon',
-                'department'=>'Rhone',
-                'phone'=>'0660000001',
-                 ],
+                'firstName' => 'Peter',
+                'lastName' => 'k',
+                'city' => 'Lyon',
+                'department' => 'Rhone',
+                'phone' => '0660000001',
+            ],
 
-                 [
+            [
                 'password' => '4020',
                 'email' => 'thi@spa.com',
-                'firstName'=> 'Thi-Hui',
-                'lastName'=> 'H',
-                'city'=> 'Lyon',
-                'department'=>'Rhone',
-                'phone'=>'0660000001',
-                 ],
-                 [
+                'firstName' => 'Thi-Hui',
+                'lastName' => 'H',
+                'city' => 'Lyon',
+                'department' => 'Rhone',
+                'phone' => '0660000001',
+            ],
+            [
                 'password' => '5020',
                 'email' => 'sami@spa.com',
-                'firstName'=> 'Sami',
-                'lastName'=> 'A',
-                'city'=> 'Lyon',
-                'department'=>'Rhone',
-                'phone'=>'0660000001',
-                 ],
+                'firstName' => 'Sami',
+                'lastName' => 'A',
+                'city' => 'Lyon',
+                'department' => 'Rhone',
+                'phone' => '0660000001',
+            ],
 
         ];
 
@@ -84,13 +84,13 @@ class UserFixtures extends Fixture
             $user->setEmail($adopter['email']);
             $password = $this->hasher->hashPassword($user, $adopter['password']);
             $user->setPassword($password);
-            
+
             $user->setFirstName($adopter['firstName']);
             $user->setLastName($adopter['lastName']);
             $user->setCity($adopter['city']);
             $user->setDepartment($adopter['department']);
             $user->setPhone($adopter['phone']);
-            
+
 
             $manager->persist($user);
         }
@@ -135,15 +135,15 @@ class UserFixtures extends Fixture
 
 
 
-            // create objects
-            $user = new Admin();
-            $user->setEmail('admin@yahoo.com');
+        // create objects
+        $user = new Admin();
+        $user->setEmail('admin@yahoo.com');
 
-            $password = $this->hasher->hashPassword($user, '0000');
+        $password = $this->hasher->hashPassword($user, '0000');
 
-            $user->setPassword($password);
+        $user->setPassword($password);
 
-            $manager->persist($user);
+        $manager->persist($user);
 
         // save all to database
         $manager->flush();
