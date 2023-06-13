@@ -55,7 +55,14 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    public function findAll(): array
+    {
+        $qa = $this->createQueryBuilder('a')
+            ->innerJoin('a.breeder', 'b')
+        ;
 
+        return $qa->getQuery()->getResult();
+    }
     //    public function findOneBySomeField($value): ?Anoucement
 //    {
 //        return $this->createQueryBuilder('a')
