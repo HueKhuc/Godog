@@ -23,8 +23,7 @@ class Announcement
     private ?string $info = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateAnoucement = null;
-    // private ?array $pictures = null;
+    private ?\DateTimeInterface $dateAnnouncement = null;
 
     #[ORM\ManyToOne(inversedBy: 'announcements')]
     #[ORM\JoinColumn(nullable: false)]
