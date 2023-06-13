@@ -36,6 +36,7 @@ class Announcement
     private Collection $dogs;
 
 
+
     public function __construct()
     {
         $this->requests = new ArrayCollection();
@@ -155,7 +156,8 @@ class Announcement
         return $this;
     }
 
-    public function getPictures(): array
+
+    public function getPictures(): ?array
     {
         $pictures = [];
         foreach ($this->getDogs() as $dog) {

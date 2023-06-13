@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Announcements List
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex flex-row gap-5 flex-wrap p-5 justify-content-center">
+		{% for announcement in announcements %}
+			<div class="border rounded col-5 p-3">
+				<div class="d-flex flex-row gap-2 justify-content-center">
+					{% for picture in announcement.pictures|slice(0,3) %}
+						<img class="" src="{{asset('images/dogs/' ~ picture.link )}}" alt="" style="width: 120px ; height: 150px">
+					{% endfor %}
+				</div>
+				<div class="text-center">
+					<ul class="">
+						<li>
+							<h3>
+								{{announcement.title}}
+							</h3>
+						</li>
+						<li>{{announcement.info}}</li>
+						<li>{{'Nombre de chiens : ' ~ announcement.dogs|length}}</li>
+						{% for dog in announcement.dogs %}
+							<li>
+								Race :
+								{% for race in dog.races %}
+									{{race.name ~ ','}}
+								{% endfor %}
+							</li>
+						{% endfor %}
+						<li>Mise à jour le
+							{{announcement.dateAnnouncement|date("d/m/Y", "Europe/Paris")}}</li>
+						<li>Eleveur :
+							{{announcement.breeder.name}}</li>
+					</ul>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
