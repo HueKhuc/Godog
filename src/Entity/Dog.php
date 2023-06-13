@@ -42,7 +42,7 @@ class Dog
 
     #[ORM\ManyToOne(inversedBy: 'dogs')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?announcement $announcement = null;
+    private ?Announcement $announcement = null;
 
     public function __construct()
     {
@@ -197,12 +197,12 @@ class Dog
         return $this;
     }
 
-    public function getannouncement(): ?announcement
+    public function getAnnouncement(): ?Announcement
     {
         return $this->announcement;
     }
 
-    public function setannouncement(?announcement $announcement): self
+    public function setAnnouncement(?Announcement $announcement): self
     {
         $this->announcement = $announcement;
 

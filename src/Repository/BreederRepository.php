@@ -77,7 +77,7 @@ class BreederRepository extends ServiceEntityRepository
             ->select('breeder.name', 'count(announcement.id) AS nbAn')
             ->leftJoin('breeder.announcements', 'announcement')
             ->groupBy('breeder.name')
-            ->orderBy('announcement.dateannouncement')
+            ->orderBy('announcement.dateAnnouncement')
             ->getQuery()
             ->getResult();
     }

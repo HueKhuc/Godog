@@ -7,21 +7,21 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<announcement>
+ * @extends ServiceEntityRepository<Announcement>
  *
- * @method announcement|null find($id, $lockMode = null, $lockVersion = null)
- * @method announcement|null findOneBy(array $criteria, array $orderBy = null)
- * @method announcement[]    findAll()
- * @method announcement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Announcement|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Announcement|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Announcement[]    findAll()
+ * @method Announcement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class AnnouncementRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, announcement::class);
+        parent::__construct($registry, Announcement::class);
     }
 
-    public function save(announcement $entity, bool $flush = false): void
+    public function save(Announcement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AnnouncementRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(announcement $entity, bool $flush = false): void
+    public function remove(Announcement $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -39,22 +39,24 @@ class AnnouncementRepository extends ServiceEntityRepository
         }
     }
 
-    //    /**
-//     * @return announcement[] Returns an array of announcement objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Announcement[] Returns an array of Anoucement objects
+     */
+    //QUERY BULDER FUNCTION does not need settings in repository, instead, do it in controller
+    public function showAnnouncementList(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select([
+                'a',
+            ])
+            ->orderBy('a.dateAnnouncement', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-    //    public function findOneBySomeField($value): ?announcement
+    //    public function findOneBySomeField($value): ?Anoucement
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')
@@ -62,5 +64,5 @@ class AnnouncementRepository extends ServiceEntityRepository
 //            ->getQuery()
 //            ->getOneOrNullResult()
 //        ;
-//    }     
+//    }
 }

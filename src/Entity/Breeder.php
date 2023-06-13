@@ -14,7 +14,7 @@ class Breeder extends User
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'breeder', targetEntity: announcement::class)]
+    #[ORM\OneToMany(mappedBy: 'breeder', targetEntity: Announcement::class)]
     private Collection $announcements;
 
     public function __construct()
@@ -47,14 +47,14 @@ class Breeder extends User
     }
 
     /**
-     * @return Collection<int, announcement>
+     * @return Collection<int, Announcement>
      */
-    public function getannouncements(): Collection
+    public function getAnnouncements(): Collection
     {
         return $this->announcements;
     }
 
-    public function addannouncement(announcement $announcement): self
+    public function addAnnouncement(Announcement $announcement): self
     {
         if (!$this->announcements->contains($announcement)) {
             $this->announcements->add($announcement);
@@ -64,7 +64,7 @@ class Breeder extends User
         return $this;
     }
 
-    public function removeannouncement(announcement $announcement): self
+    public function removeAnnouncement(Announcement $announcement): self
     {
         if ($this->announcements->removeElement($announcement)) {
             // set the owning side to null (unless already changed)
