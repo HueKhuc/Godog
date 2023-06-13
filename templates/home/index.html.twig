@@ -9,12 +9,12 @@
 	<div>
 		<ul class="container text-center">
 
-			{% for anoucement in anoucements %}
+			{% for announcement in announcements %}
 				<li class="mt-5">
-					<h3>{{ anoucement.title }}</h3>
+					<h3>{{ announcement.title }}</h3>
 
 					<p>Last updated:
-						{{ anoucement.dateAnnouncement|date('Y-m-d H:i:s') }}</p>
+						{{ announcement.dateAnnouncement|date('Y-m-d H:i:s') }}</p>
 
 					{# show dog pics #}
 					{# {% set pictureCount = 0 %}
@@ -27,18 +27,18 @@
 											{% endfor %}
 										{% endfor %} #}
 
-					{% for picture in anoucement.pictures|slice(0,3) %}
+					{% for picture in announcement.pictures|slice(0,3) %}
 						<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
 					{% endfor %}
 
 					{# show dog name #}
-					{% for dog in anoucement.dogs %}
+					{% for dog in announcement.dogs %}
 						<p>Dog name:
 							{{ dog.name }}</p>
 					{% endfor %}
 
 					{# show dog race #}
-					{% for dog in anoucement.dogs %}
+					{% for dog in announcement.dogs %}
 						<p>
 							Dog Race :
 							{% for race in dog.races %}

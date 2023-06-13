@@ -11,14 +11,14 @@ class HomeController extends AbstractController
 {
 
     #[Route('/', name: 'homePage', )]
-    public function home(BreederRepository $breederRepository, AnnouncementRepository $anoucementRepository): Response
+    public function home(BreederRepository $breederRepository, AnnouncementRepository $announcementRepository): Response
     {
         $breeders = $breederRepository->findByBreederHome();
-        $anoucements = $anoucementRepository->showAnnouncementList();
+        $announcements = $announcementRepository->showAnnouncementList();
 
         return $this->render('home/index.html.twig', [
             'breeders' => $breeders,
-            'anoucements' => $anoucements,
+            'announcements' => $announcements,
         ]);
     }
 }
