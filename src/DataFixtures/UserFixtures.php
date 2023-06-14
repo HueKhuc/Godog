@@ -18,9 +18,6 @@ class UserFixtures extends Fixture
         $this->hasher = $hasher;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function load(ObjectManager $manager)
     {
         // create table that compose users details
@@ -73,11 +70,9 @@ class UserFixtures extends Fixture
                 'department' => 'Rhone',
                 'phone' => '0660000001',
             ],
-
         ];
 
         foreach ($usersAdopter as $adopter) {
-
             // create objects
             $user = new Adopter();
             $user->setEmail($adopter['email']);
@@ -89,7 +84,6 @@ class UserFixtures extends Fixture
             $user->setCity($adopter['city']);
             $user->setDepartment($adopter['department']);
             $user->setPhone($adopter['phone']);
-
 
             $manager->persist($user);
         }
@@ -115,11 +109,9 @@ class UserFixtures extends Fixture
                 'pass' => '5050',
                 'email' => 'meme@spa.com',
             ],
-
         ];
 
         foreach ($userBreeder as $name => $infos) {
-
             // create objects
             $user = new Breeder();
             $user->setName($name);
@@ -131,8 +123,6 @@ class UserFixtures extends Fixture
 
             $manager->persist($user);
         }
-
-
 
         // create objects
         $user = new Admin();

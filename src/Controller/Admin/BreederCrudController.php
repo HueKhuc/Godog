@@ -8,14 +8,12 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-
 class BreederCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
         return Breeder::class;
     }
-
 
     public function configureFields(string $pageName): iterable
     {
@@ -26,5 +24,4 @@ class BreederCrudController extends AbstractCrudController
             TextField::new('name'),
         ];
     }
-    
 }

@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: '`admin`')]
 class Admin extends User
 {
-
     /**
      * @see UserInterface
      */

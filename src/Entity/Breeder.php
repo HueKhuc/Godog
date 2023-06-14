@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: BreederRepository::class)]
 class Breeder extends User
 {
-
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 

@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Breeder;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -42,7 +41,7 @@ class BreederRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        return $this->findBy(array(), array('name' => 'ASC'));
+        return $this->findBy([], ['name' => 'ASC']);
     }
 
     //    /**

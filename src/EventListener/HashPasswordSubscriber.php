@@ -26,7 +26,7 @@ class HashPasswordSubscriber implements EventSubscriberInterface
         // Notez également que l'on utilise le FQCN des événement, et non une constante. Les deux fonctionnent ;)
         return [
             BeforeEntityPersistedEvent::class => ['updateUserPassword'],
-            BeforeEntityUpdatedEvent::class   => ['updateUserPassword'],
+            BeforeEntityUpdatedEvent::class => ['updateUserPassword'],
         ];
     }
 

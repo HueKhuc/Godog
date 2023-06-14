@@ -212,7 +212,7 @@ class Dog
         return $this;
     }
 
-    public function isIsAdopted(): ?bool
+    public function getIsAdopted(): ?bool
     {
         return $this->isAdopted;
     }
