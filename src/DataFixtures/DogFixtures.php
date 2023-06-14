@@ -71,7 +71,6 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
         ];
 
         $images = [
-            'american-staffordshire-terrier_2.jpg',
             'basenji.jpg',
             'basset-des-alpes.jpg',
             'basset-hound.jpg',
