@@ -15,8 +15,6 @@ class Request
     #[ORM\Column]
     private ?int $id = null;
 
-
-
     #[ORM\OneToMany(mappedBy: 'request', targetEntity: Message::class)]
     private Collection $messages;
 
@@ -33,7 +31,6 @@ class Request
 
     public function __construct()
     {
-
         $this->messages = new ArrayCollection();
         $this->dogs = new ArrayCollection();
     }
@@ -42,9 +39,6 @@ class Request
     {
         return $this->id;
     }
-
-
-
 
     /**
      * @return Collection<int, Message>

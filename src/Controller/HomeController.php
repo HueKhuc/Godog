@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Repository\AnnouncementRepository;
@@ -9,7 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-
     #[Route('/', name: 'homePage', )]
     public function home(BreederRepository $breederRepository, AnnouncementRepository $announcementRepository): Response
     {

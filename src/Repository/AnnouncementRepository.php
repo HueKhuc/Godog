@@ -42,7 +42,7 @@ class AnnouncementRepository extends ServiceEntityRepository
     /**
      * @return Announcement[] Returns an array of Anoucement objects
      */
-    //QUERY BULDER FUNCTION does not need settings in repository, instead, do it in controller
+    // QUERY BULDER FUNCTION does not need settings in repository, instead, do it in controller
     public function showAnnouncementList(): array
     {
         return $this->createQueryBuilder('a')
@@ -55,29 +55,33 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
     public function findAll(): array
     {
         $qa = $this->createQueryBuilder('a')
-            ->innerJoin('a.breeder', 'b') 
+            ->innerJoin('a.breeder', 'b')
         ;
+
         return $qa->getQuery()->getResult();
     }
 
     public function findById(): array
     {
         $qa = $this->createQueryBuilder('a')
-            ->innerJoin('a.breeder', 'b') 
+            ->innerJoin('a.breeder', 'b')
         ;
+
         return $qa->getQuery()->getResult();
     }
-       public function findOneById($value): ?Announcement
-   {
-       return $this->createQueryBuilder('a')
-        ->innerJoin('a.breeder', 'b') 
-        ->andWhere('a.id = :val')
-        ->setParameter('val', $value)
-        ->getQuery()
-        ->getOneOrNullResult()
-       ;
-   }
+
+    public function findOneById($value): ?Announcement
+    {
+        return $this->createQueryBuilder('a')
+         ->innerJoin('a.breeder', 'b')
+         ->andWhere('a.id = :val')
+         ->setParameter('val', $value)
+         ->getQuery()
+         ->getOneOrNullResult()
+        ;
+    }
 }

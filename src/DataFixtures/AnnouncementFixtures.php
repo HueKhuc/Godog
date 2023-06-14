@@ -3,9 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Announcement;
-
 use App\Repository\BreederRepository;
-use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -57,18 +55,15 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
         $breeders = $this->breederRepository->findAll();
 
         foreach ($announcementInfo as $info) {
-
             $announcement = new announcement();
             $announcement->setTitle($info['title']);
             $announcement->setInfo($info['info']);
             $nb = mt_rand(0, 1000000);
-            $date = new DateTime('-' . $nb . ' minutes');
+            $date = new \DateTime('-' . $nb . ' minutes');
             $announcement->setDateAnnouncement($date);
             $index = mt_rand(0, count($breeders) - 1);
 
             $announcement->setBreeder($breeders[$index]);
-
-
 
             $manager->persist($announcement);
         }

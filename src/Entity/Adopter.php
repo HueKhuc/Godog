@@ -12,49 +12,42 @@ class Adopter extends User
 {
     #[ORM\Column(length: 50, nullable: true)]
     /**
-     * Summary of firstName
-     * @var 
+     * Summary of firstName.
      */
     private ?string $firstName = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     /**
-     * Summary of lastName
-     * @var 
+     * Summary of lastName.
      */
     private ?string $lastName = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     /**
-     * Summary of city
-     * @var 
+     * Summary of city.
      */
     private ?string $city = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     /**
-     * Summary of department
-     * @var 
+     * Summary of department.
      */
     private ?string $department = null;
 
-
     #[ORM\Column(length: 50, nullable: true)]
     /**
-     * Summary of phone
-     * @var 
+     * Summary of phone.
      */
     private ?string $phone = null;
 
     #[ORM\OneToMany(mappedBy: 'adopter', targetEntity: Request::class)]
     /**
-     * Summary of requests
-     * @var Collection
+     * Summary of requests.
      */
     private Collection $requests;
 
     /**
-     * Summary of __construct
+     * Summary of __construct.
      */
     public function __construct()
     {
@@ -73,11 +66,8 @@ class Adopter extends User
         return array_unique($roles);
     }
 
-
-
     /**
-     * Summary of getFirstName
-     * @return string|null
+     * Summary of getFirstName.
      */
     public function getFirstName(): ?string
     {
@@ -85,8 +75,10 @@ class Adopter extends User
     }
 
     /**
-     * Summary of setFirstName
+     * Summary of setFirstName.
+     *
      * @param mixed $firstName
+     *
      * @return \App\Entity\Adopter
      */
     public function setFirstName(string $firstName): self
@@ -97,8 +89,7 @@ class Adopter extends User
     }
 
     /**
-     * Summary of getLastName
-     * @return string|null
+     * Summary of getLastName.
      */
     public function getLastName(): ?string
     {
@@ -106,8 +97,10 @@ class Adopter extends User
     }
 
     /**
-     * Summary of setLastName
+     * Summary of setLastName.
+     *
      * @param mixed $lastName
+     *
      * @return \App\Entity\Adopter
      */
     public function setLastName(string $lastName): self
@@ -118,8 +111,7 @@ class Adopter extends User
     }
 
     /**
-     * Summary of getCity
-     * @return string|null
+     * Summary of getCity.
      */
     public function getCity(): ?string
     {
@@ -127,8 +119,10 @@ class Adopter extends User
     }
 
     /**
-     * Summary of setCity
+     * Summary of setCity.
+     *
      * @param mixed $city
+     *
      * @return \App\Entity\Adopter
      */
     public function setCity(string $city): self
@@ -139,8 +133,7 @@ class Adopter extends User
     }
 
     /**
-     * Summary of getDepartment
-     * @return string|null
+     * Summary of getDepartment.
      */
     public function getDepartment(): ?string
     {
@@ -148,8 +141,10 @@ class Adopter extends User
     }
 
     /**
-     * Summary of setDepartment
+     * Summary of setDepartment.
+     *
      * @param mixed $department
+     *
      * @return \App\Entity\Adopter
      */
     public function setDepartment(string $department): self
@@ -159,11 +154,8 @@ class Adopter extends User
         return $this;
     }
 
-
-
     /**
-     * Summary of getPhone
-     * @return string|null
+     * Summary of getPhone.
      */
     public function getPhone(): ?string
     {
@@ -171,8 +163,10 @@ class Adopter extends User
     }
 
     /**
-     * Summary of setPhone
+     * Summary of setPhone.
+     *
      * @param mixed $phone
+     *
      * @return \App\Entity\Adopter
      */
     public function setPhone(string $phone): self
@@ -191,8 +185,10 @@ class Adopter extends User
     }
 
     /**
-     * Summary of addRequest
+     * Summary of addRequest.
+     *
      * @param \App\Entity\Request $request
+     *
      * @return \App\Entity\Adopter
      */
     public function addRequest(Request $request): self
@@ -206,8 +202,10 @@ class Adopter extends User
     }
 
     /**
-     * Summary of removeRequest
+     * Summary of removeRequest.
+     *
      * @param \App\Entity\Request $request
+     *
      * @return \App\Entity\Adopter
      */
     public function removeRequest(Request $request): self
@@ -221,5 +219,4 @@ class Adopter extends User
 
         return $this;
     }
-
 }

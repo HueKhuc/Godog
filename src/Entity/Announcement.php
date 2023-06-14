@@ -35,8 +35,6 @@ class Announcement
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class)]
     private Collection $dogs;
 
-
-
     public function __construct()
     {
         $this->requests = new ArrayCollection();
@@ -156,7 +154,6 @@ class Announcement
         return $this;
     }
 
-
     public function getPictures(): ?array
     {
         $pictures = [];
@@ -166,6 +163,7 @@ class Announcement
             }
         }
         shuffle($pictures);
+
         return $pictures;
     }
 }

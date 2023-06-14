@@ -15,7 +15,6 @@ class AdminCrudController extends AbstractCrudController
         return Admin::class;
     }
 
-    
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -24,5 +23,4 @@ class AdminCrudController extends AbstractCrudController
             TextField::new('plainPassword')->onlyOnForms(),
         ];
     }
-    
 }

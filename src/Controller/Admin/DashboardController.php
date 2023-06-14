@@ -2,10 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Race;
-use App\Entity\Breeder;
-use App\Entity\Adopter;
 use App\Entity\Admin;
+use App\Entity\Adopter;
+use App\Entity\Breeder;
+use App\Entity\Race;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -50,6 +50,5 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Adopters', 'fas fa-list', Adopter::class);
         yield MenuItem::linkToCrud('Admins', 'fas fa-list', Admin::class);
         yield MenuItem::linkToRoute('Retour au site', 'fas fa-list', 'homePage');
-        
     }
 }

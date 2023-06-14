@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Announcement;
 use App\Entity\Dog;
 use App\Entity\Picture;
 use App\Repository\AnnouncementRepository;
@@ -32,7 +31,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 Nous recherchons pour Mali une famille sans autres animaux.
                 Ok enfants respectueux.',
                 'isLOF' => '1',
-                'isTolerant' => '0'
+                'isTolerant' => '0',
             ],
             [
                 'name' => 'Napoleon',
@@ -43,7 +42,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 Un placement non urbain sera idéal, en pavillon et sans jeunes enfants.
                 on evitera un placement avec de nombreux escaliers et du sport',
                 'isLOF' => '0',
-                'isTolerant' => '0'
+                'isTolerant' => '0',
             ],
             [
                 'name' => 'Boby',
@@ -54,7 +53,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 
                 Boby pourra vivre en maison ou en appartement avec des enfants dans le foyer.',
                 'isLOF' => '1',
-                'isTolerant' => '1'
+                'isTolerant' => '1',
             ],
             [
                 'name' => 'Ninette',
@@ -63,7 +62,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 C'est une chienne qui aime les balades et les grands espaces, afin qu'elle se sente à l'aise, nous la placerons en maison et non en appartement. Elle aime jouer, et elle est gourmande.
                 Elle n'est pas compatible avec les autres animaux.",
                 'isLOF' => '1',
-                'isTolerant' => '0'
+                'isTolerant' => '0',
             ],
         ];
 
@@ -99,7 +98,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 $nbRaces = mt_rand(1, 4);
             }
 
-            for ($i = 1; $i <= $nbRaces; $i++) {
+            for ($i = 1; $i <= $nbRaces; ++$i) {
                 $index = mt_rand(0, count($races) - 1);
 
                 $dog->addRace($races[$index]);
@@ -107,7 +106,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
 
             $nbImages = mt_rand(1, 5);
 
-            for ($i = 1; $i <= $nbImages; $i++) {
+            for ($i = 1; $i <= $nbImages; ++$i) {
                 $index = mt_rand(0, count($images) - 1);
 
                 $picture = new Picture();
@@ -125,7 +124,6 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
         }
         $manager->flush();
     }
-
 
     public function getDependencies(): array
     {
