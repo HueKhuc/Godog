@@ -32,6 +32,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 Ok enfants respectueux.',
                 'isLOF' => '1',
                 'isTolerant' => '0',
+                'isAdopted' => '0',
             ],
             [
                 'name' => 'Napoleon',
@@ -43,6 +44,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 on evitera un placement avec de nombreux escaliers et du sport',
                 'isLOF' => '0',
                 'isTolerant' => '0',
+                'isAdopted' => '0',
             ],
             [
                 'name' => 'Boby',
@@ -54,6 +56,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 Boby pourra vivre en maison ou en appartement avec des enfants dans le foyer.',
                 'isLOF' => '1',
                 'isTolerant' => '1',
+                'isAdopted' => '0',
             ],
             [
                 'name' => 'Ninette',
@@ -63,11 +66,11 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 Elle n'est pas compatible avec les autres animaux.",
                 'isLOF' => '1',
                 'isTolerant' => '0',
+                'isAdopted' => '0',
             ],
         ];
 
         $images = [
-            'american-staffordshire-terrier_2.jpg',
             'basenji.jpg',
             'basset-des-alpes.jpg',
             'basset-hound.jpg',
@@ -92,6 +95,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
             $dog->setDescription($dogInfo['description']);
             $dog->setIsLOF($dogInfo['isLOF']);
             $dog->setIsTolerant($dogInfo['isTolerant']);
+            $dog->setIsAdopted($dogInfo['isAdopted']);
 
             $nbRaces = 1;
             if (!$dog->getIsLOF()) {

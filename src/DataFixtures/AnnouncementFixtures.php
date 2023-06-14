@@ -23,32 +23,32 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
             [
                 'title' => 'announcement 1',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-02-01 15:23',
+                'dateAnnouncement' => '2021-02-01 15:23',
             ],
             [
                 'title' => 'announcement 2',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-02-03 15:42',
+                'dateAnnouncement' => '2021-02-03 15:42',
             ],
             [
                 'title' => 'announcement 3',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-02-05 16:28',
+                'dateAnnouncement' => '2021-02-05 16:28',
             ],
             [
                 'title' => 'announcement 4',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-02-07 17:12',
+                'dateAnnouncement' => '2021-02-07 17:12',
             ],
             [
-                'title' => 'Anoucement 5',
+                'title' => 'Announcement 5',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-03-09 19:02',
+                'dateAnnouncement' => '2021-03-09 19:02',
             ],
             [
-                'title' => 'Anoucement 6',
+                'title' => 'Announcement 6',
                 'info' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec velit',
-                'dateAnoucement' => '2021-03-11 18:10',
+                'dateAnnouncement' => '2021-03-11 18:10',
             ],
         ];
 
