@@ -44,6 +44,9 @@ class Dog
     #[ORM\JoinColumn(nullable: false)]
     private ?Announcement $announcement = null;
 
+    #[ORM\Column]
+    private ?bool $isAdopted = null;
+
     public function __construct()
     {
         $this->requests = new ArrayCollection();
@@ -205,6 +208,18 @@ class Dog
     public function setAnnouncement(?Announcement $announcement): self
     {
         $this->announcement = $announcement;
+
+        return $this;
+    }
+
+    public function isIsAdopted(): ?bool
+    {
+        return $this->isAdopted;
+    }
+
+    public function setIsAdopted(bool $isAdopted): self
+    {
+        $this->isAdopted = $isAdopted;
 
         return $this;
     }

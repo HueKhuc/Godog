@@ -33,9 +33,19 @@
 							{{announcement.dateAnnouncement|date("d/m/Y", "Europe/Paris")}}</li>
 						<li>Eleveur :
 							{{announcement.breeder.name}}</li>
+							
 					</ul>
+							<a href="{{path('app_announcement_id', {id: announcement.id})}}" class="btn btn-lg btn-outline-dark p-3 m-5" role="button" aria-pressed="true">See this announcement</a>
+
 				</div>
+	
 			</div>
+			
 		{% endfor %}
 	</div>
+
+	
+
 {% endblock %}
+
+

@@ -58,18 +58,26 @@ class AnnouncementRepository extends ServiceEntityRepository
     public function findAll(): array
     {
         $qa = $this->createQueryBuilder('a')
-            ->innerJoin('a.breeder', 'b')
+            ->innerJoin('a.breeder', 'b') 
         ;
-
         return $qa->getQuery()->getResult();
     }
-    //    public function findOneBySomeField($value): ?Anoucement
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+    public function findById(): array
+    {
+        $qa = $this->createQueryBuilder('a')
+            ->innerJoin('a.breeder', 'b') 
+        ;
+        return $qa->getQuery()->getResult();
+    }
+       public function findOneById($value): ?Announcement
+   {
+       return $this->createQueryBuilder('a')
+        ->innerJoin('a.breeder', 'b') 
+        ->andWhere('a.id = :val')
+        ->setParameter('val', $value)
+        ->getQuery()
+        ->getOneOrNullResult()
+       ;
+   }
 }
