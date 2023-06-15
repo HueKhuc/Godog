@@ -33,16 +33,17 @@ class RequestController extends AbstractController
         $announcement = $repository->find($id);
 
         $adoptionRequest = new AdoptionRequest();
-        $adoptionRequest->setAnnouncement($announcement);
-        $adoptionRequest->setAdopter($this->getUser());
+        // $adoptionRequest->setAnnouncement($announcement);
+        $adoptionRequest->setAdopter($adopter);
 
         // $adopter->addRequest($adoptionRequest);
-        // $announcement->addRequest($adoptionRequest);
+        $announcement->addRequest($adoptionRequest);
 
         $dogs = $announcement->getDogs();
 
         $message = new Message();
         $message->setUser($adopter);
+        // $message->setUser($this->getUser());
         $adoptionRequest->addMessage($message);
 
         $form = $this->createForm(RequestType::class, $adoptionRequest);
@@ -59,8 +60,8 @@ class RequestController extends AbstractController
 
         return $this->render('request/index.html.twig', [
             'form' => $form->createView(),
-            'dog' => $dogs,
-            'message' => $message,
+            // 'dog' => $dogs,
+            // 'message' => $message,
         ]);
     }
 }
