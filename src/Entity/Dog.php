@@ -29,7 +29,7 @@ class Dog
     private ?bool $isTolerant = null;
 
     #[ORM\Column]
-    private ?bool $isLOF = null;
+    private ?bool $isLof = null;
 
     #[ORM\ManyToMany(targetEntity: Request::class, inversedBy: 'dogs')]
     private Collection $requests;
@@ -107,14 +107,14 @@ class Dog
         return $this;
     }
 
-    public function getIsLOF(): ?bool
+    public function getIsLof(): ?bool
     {
-        return $this->isLOF;
+        return $this->isLof;
     }
 
-    public function setIsLOF(bool $isLOF): self
+    public function setIsLof(bool $isLof): self
     {
-        $this->isLOF = $isLOF;
+        $this->isLof = $isLof;
 
         return $this;
     }

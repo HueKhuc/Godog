@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Announcement;
+use App\Form\Filter\AnnouncementsFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -54,7 +55,36 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-    }    
+    }
+
+    public function findByFilter(AnnouncementsFilter $filter): array
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->leftJoin('a.dogs', 'd');
+
+
+        if (!is_null($filter->getRace())) {
+
+            $qb
+                ->innerJoin('d.races', 'r')
+                ->andWhere('r.id = :race')
+                ->setParameter('race', $filter->getRace()->getId());
+        }
+
+        if ($filter->getIsLof()) {
+
+            $qb
+                ->andWhere('d.isLof = :lof')
+                ->setParameter('lof', $filter->getIsLof());
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 
     // public function findOneById($value): ?Announcement
     // {
