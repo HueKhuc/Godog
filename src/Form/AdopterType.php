@@ -41,6 +41,7 @@ class AdopterType extends AbstractType
                 'required' => true,
             ])
             ->add('phone')
+        
         ;
     }
 
@@ -48,6 +49,7 @@ class AdopterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Adopter::class,
+        
         ]);
     }
 }

@@ -26,24 +26,36 @@
 							<li class="nav-item">
 								<a class="nav-link active" aria-current="page" href="{{ path('homePage') }}">Home</a>
 							</li>
+							{% if is_granted('ROLE_BREEDER') %}
 							<li class="nav-item">
-								<a class="nav-link" href="">Breeds</a>
+								<a class="nav-link" href="">Breeder</a>
 							</li>
+							{% endif %}
+							{% if is_granted('ROLE_ADOPTER') %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('app_adopter')}}">Adopter</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('app_login') }}">Login</a>
-							</li>
+							{% endif %}
+							{% if app.user %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
 							</li>
+							{% else %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_login') }}">Login</a>
+							</li>
+
+							
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
 							</li>
+							{% endif %}
+
+							{% if is_granted('ROLE_ADMIN') %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('admin') }}">Dashboard Admin</a>
 							</li>
+							{% endif %}
 						</ul>
 					</div>
 				</div>

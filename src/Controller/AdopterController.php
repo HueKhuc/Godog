@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Adopter;
+
 use App\Form\AdopterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,14 +20,14 @@ class AdopterController extends AbstractController
     {
         $adopter = $this->getUser();
         $form = $this->createForm(AdopterType::class, $adopter);
-
+        // $message = $this->createForm(Request::class, $adopter);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // On récupère l’entité manager qui va nous permettre de sa
             $em->persist($adopter);
             $em->flush();
 
-            $this->addFlash('success', 'Donnée insérée');
+            $this->addFlash('success', 'Data inserted');
             return $this->redirectToRoute('app_adopter');
         }
         return $this->render('adopter/index.html.twig', [
