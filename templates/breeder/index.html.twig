@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<div class="d-flex">
+	<h1 class="text-center">My Announcements</h1>
+	<div class="d-flex pt-5 mt-5">
 		<div class='col-2 mt-5 pt-5'>
 			<h2 class='text-center'>Modify My information</h2>
 			{{ form_start(form) }}
@@ -15,40 +16,44 @@
 			</div>
 			{{ form_end(form) }}
 		</div>
-      {# breeder list #}
-	<div class='col-10'>
-   <h1 class="text-center">My Announcements</h1>
-		<ul class="text-center">
+		{# breeder list #}
+		<div class='col-10'>
+			<ul class="text-center">
 
-			{% for breederAnnouncement in breederAnnouncements %}
-				<li class="mt-5 border bg">
-					<h3>{{ breederAnnouncement.title }}</h3>
+				{% for breederAnnouncement in breederAnnouncements %}
+					<li class="mt-5 border bg">
+						<h3>{{ breederAnnouncement.title }}</h3>
 
-					<p>Last updated:
-						{{ breederAnnouncement.dateAnnouncement|date('Y-m-d H:i:s') }}</p>
-					{% for picture in breederAnnouncement.pictures|slice(0,3) %}
-						<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
-					{% endfor %}
+						<p>Last updated:
+							{{ breederAnnouncement.dateAnnouncement|date('Y-m-d H:i:s') }}</p>
+						{% for picture in breederAnnouncement.pictures|slice(0,3) %}
+							<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
+						{% endfor %}
+						{# show dog name #}
+						{% for dog in breederAnnouncement.dogs %}
+							<div>
+								{% if dog.isAdopted == 1 %}
+									<div><p class="font-weight-bold text-uppercase">Dog Name: {{dog.name}}</p><p class = "text-success font-italic"> Adopted</p> </div>
+								{% else %}
+									 <div><p class="font-weight-bold text-uppercase">Dog Name: {{dog.name}}</p><p class = "text-primary font-italic">Not Adopted</p> </div>
+								{% endif %}
+							</div>
+						{% endfor %}
 
-					{# show dog name #}
-					{% for dog in breederAnnouncement.dogs %}
-						<p>Dog name:
-							{{ dog.name }}</p>
-					{% endfor %}
-
-					{# show dog race #}
-					{% for dog in breederAnnouncement.dogs %}
-						<p>
-							Dog Race :
-							{% for race in dog.races %}
-								{{race.name ~ ','}}
-							{% endfor %}
-						</p>
-					{% endfor %}
-				</li>
-			{% endfor %}
-		</ul>
-	</div>
+						{# show dog race #}
+						{% for dog in breederAnnouncement.dogs %}
+							<p>
+								Race :
+								{% for race in dog.races %}
+									{{race.name}}
+								{% endfor %}
+							</p>
+						{% endfor %}
+					</li>
+					<a class="btn btn-lg btn-outline-dark p-3 m-5" href="">Modify the Announcement</a>
+				{% endfor %}
+			</ul>
+		</div>
 	</div>
 {% endblock %}
 

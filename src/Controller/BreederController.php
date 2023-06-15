@@ -19,10 +19,11 @@ class BreederController extends AbstractController
     {
         /** @var \App\Entity\Breeder $breeder  */
         $breeder = $this->getUser();
-        $breederAnnouncements = $breeder->getAnnouncements();
+        // $breederAnnouncements = $breeder->getAnnouncements();  
         $breederAnnouncements = $announcementRepository->findBy([
             'breeder' => $breeder,
         ]);
+
 
 
         $form = $this->createForm(BreederType::class, $breeder, );
