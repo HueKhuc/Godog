@@ -28,7 +28,7 @@
 							</li>
 							{% if is_granted('ROLE_BREEDER') %}
 							<li class="nav-item">
-								<a class="nav-link" href="">Breeder</a>
+								<a class="nav-link" href="{{ path('app_breeder')}}">Breeder</a>
 							</li>
 							{% endif %}
 							{% if is_granted('ROLE_ADOPTER') %}
