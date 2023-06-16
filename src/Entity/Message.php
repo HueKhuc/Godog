@@ -28,6 +28,11 @@ class Message
     #[ORM\JoinColumn(nullable: false)]
     private ?Request $request = null;
 
+    public function __construct()
+    {
+        $this->dateMessage = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

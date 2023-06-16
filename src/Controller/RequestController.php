@@ -55,13 +55,13 @@ class RequestController extends AbstractController
 
             $this->addFlash('success', 'Donnée insérée');
 
-            return $this->redirectToRoute('app_request_id');
+            return $this->redirectToRoute('app_request_id', [
+                'id' => $id,
+            ]);
         }
 
         return $this->render('request/index.html.twig', [
             'form' => $form->createView(),
-            // 'dog' => $dogs,
-            // 'message' => $message,
         ]);
     }
 }
