@@ -6,7 +6,7 @@
 {% block body %}
 	<h1 class="text-center">My Announcements</h1>
 	<div class="d-flex pt-5 mt-5">
-		<div class='col-2 mt-5 pt-5'>
+		<div class='col-4 mt-5 pt-5'>
 			<h2 class='text-center'>Modify My information</h2>
 			{{ form_start(form) }}
 			{{ form_row(form.name)}}
@@ -15,9 +15,12 @@
 				<button type='submit'>Send</button>
 			</div>
 			{{ form_end(form) }}
+			<div>
+			<h2 class="text-center pt-5">Recent Messages</h2>
+			</div>
 		</div>
 		{# breeder list #}
-		<div class='col-10'>
+		<div class='col-8'>
 			<ul class="text-center">
 
 				{% for breederAnnouncement in breederAnnouncements %}
