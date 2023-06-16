@@ -2,17 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Adopter;
-use App\Entity\Announcement;
 use App\Entity\Message;
 use App\Entity\Request as AdoptionRequest;
 use App\Form\RequestType;
 use App\Repository\AnnouncementRepository;
-use App\Repository\RequestRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request as PhpRequest;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +23,6 @@ class RequestController extends AbstractController
         EntityManagerInterface $em,
         AnnouncementRepository $repository,
     ): Response {
-
         $adopter = $this->getUser();
         $announcement = $repository->find($id);
 

@@ -20,11 +20,11 @@ class RequestType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
-                'required'   => true,
+                'required' => true,
             ])
             ->add('messages', CollectionType::class, [
                 'entry_type' => MessageType::class,
-                'required'   => true,
+                'required' => true,
             ])
         ;
     }
