@@ -1,52 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Announcement Details{% endblock %}
+{% block title %}Announcement Details
+{% endblock %}
 
 {% block body %}
 
-<section class="container">
+	<section class="container">
+		<div class="mb-5 pb-5">
+			<h1 class="text-center">{{ announcement.title }}</h1>
+			{% for dog in announcement.dogs %}
+				<h2>{{dog.name}}</h2>
+				<article>
+					<p>
+						Race :
+						{% for race in dog.races %}
+							{{race.name ~ ','}}
+						{% endfor %}
+					</p>
+					<p>Background :
+						{{ dog.background }}</p>
 
-<h1 class="text-center">{{ announcement.title }}</h1>
+					<p>
+						{% if dog.isLOF == 1 %}
+							Est LOF
+						{% else %}
+							N'est pas LOF
+						{% endif %}
+					</p>
+					<p>Description :
+						{{ dog.description }}
+					</p>
+					<p>
+						{% if dog.isTolerant == 1 %}
+							Tolérant
+						{% else %}
+							N'est pas tolérant
+						{% endif %}
+					</p>
+					<p>
+						{% if dog.isAdopted == 1 %}
+							Est adopté
+						{% else %}
+							N'est pas adopté
+						{% endif %}
+					</p>
+				</article>
+				<div class="d-flex">
+					{% for picture in announcement.pictures|slice(0,5) %}
+						<img class="" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
+					{% endfor %}
+				</div>
 
-{% for dog in announcement.dogs %}
-<h2>{{dog.name}}</h2>
-    <article>                       
-    <p>    Race :
-    {% for race in dog.races %}
-        {{race.name ~ ','}}
-    {% endfor %}</p>
-    <p>Background :
-    {{ dog.background }}</p>
-    
-    <p>
-    {% if dog.isLOF == 1 %}
-        Est LOF    
-    {% else %}
-        N'est pas LOF
-    {% endif %}</p>
-   <p>Description :
-    {{ dog.description }}
-   </p>
-    <p>{% if dog.isTolerant == 1 %}
-        Tolérant   
-    {% else %}
-        N'est pas tolérant
-    {% endif %}
-    </p>
-    <p>{% if dog.isAdopted == 1 %}
-        Est adopté    
-    {% else %}
-        N'est pas adopté
-    {% endif %}</p>
-    </article>
-    <div class="d-flex">
-    {% for picture in announcement.pictures|slice(0,5) %}
-		<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
-    {% endfor %}
-    
-    </div>
-        
-                            
-{% endfor %}
-</section>
+			{% endfor %}
+			<a href="{{path('app_request_id', {id: announcement.id})}}" class="btn btn-lg btn-outline-dark my-3" role="button" aria-pressed="true">Request</a>
+		</div>
+	</section>
 {% endblock body %}

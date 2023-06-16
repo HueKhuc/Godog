@@ -15,7 +15,7 @@ class Request
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'request', targetEntity: Message::class)]
+    #[ORM\OneToMany(mappedBy: 'request', targetEntity: Message::class, cascade: ['persist', 'remove'])]
     private Collection $messages;
 
     #[ORM\ManyToOne(inversedBy: 'requests')]
