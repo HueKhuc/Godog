@@ -5,8 +5,9 @@
 
 {% block body %}
 	<h1 class="text-center">My Announcements</h1>
-	<div class="d-flex pt-5 mt-5">
-		<div class='col-4 mt-5 pt-5'>
+	<div class="d-flex">
+		<div class='col-4 container'>
+			<div class = "">
 			<h2 class='text-center'>Modify My information</h2>
 			{{ form_start(form) }}
 			{{ form_row(form.name)}}
@@ -15,9 +16,26 @@
 				<button type='submit'>Send</button>
 			</div>
 			{{ form_end(form) }}
+			</div>
+
+			{# recent messages #}
 			<div>
 			<h2 class="text-center pt-5">Recent Messages</h2>
+			{% for message in messages %}
+			<div class = "pt-5 mt-3">
+			<p class = "text-center">Send on: <span class = 'text-primary'>{{message.dateMessage |date("F jS \\a\\t g:ia")}}</span></p>
+			<p>{{message.text}}</p>
 			</div>
+
+			{# reply #}
+			<div class="text-right" >
+			<p>reply message goes here</p>
+			<button type='submit'>Reply</button>
+			</div>
+			{% endfor %}
+
+			</div>
+
 		</div>
 		{# breeder list #}
 		<div class='col-8'>

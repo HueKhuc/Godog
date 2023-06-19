@@ -45,7 +45,7 @@ class Message
 
     public function setDateMessage(\DateTimeInterface $dateMessage): self
     {
-        $this->dateMessage = $dateMessage;
+        $this->dateMessage= $dateMessage;
 
         return $this;
     }

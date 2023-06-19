@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Message;
 use App\Form\BreederType;
 use App\Repository\AnnouncementRepository;
+use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,17 +17,28 @@ class BreederController extends AbstractController
 {
     #[Route('/breeder', name: 'app_breeder')]
     #[IsGranted('ROLE_BREEDER')]
-    public function modifyBreed(Request $request, EntityManagerInterface $entityManager, AnnouncementRepository $announcementRepository, ): Response
+    public function modifyBreed(
+        Request $request, 
+        EntityManagerInterface $entityManager, 
+        AnnouncementRepository $announcementRepository, 
+        MessageRepository $messageRepository,
+        ): Response
     {
-        /** @var \App\Entity\Breeder $breeder  */
-        $breeder = $this->getUser();
-        // $breederAnnouncements = $breeder->getAnnouncements();  
-        $breederAnnouncements = $announcementRepository->findBy([
-            'breeder' => $breeder,
-        ]);
+         /** @var \App\Entity\Breeder $breeder  */
+         $breeder = $this->getUser();
+
+        // fetch messages
+        $messages = $messageRepository->showRecentMessages();
+
+        // to reply to message
+      
+
+        // fetch breeders announcements  
+        $breederAnnouncements = $breeder->getAnnouncements();  
+        // $breederAnnouncements = $announcementRepository->findBy(['breeder' => $breeder, ]);
 
 
-
+        // for updating the breeder info
         $form = $this->createForm(BreederType::class, $breeder, );
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,6 +52,7 @@ class BreederController extends AbstractController
         return $this->render('breeder/index.html.twig', [
             'form' => $form->createView(),
             'breederAnnouncements' => $breederAnnouncements,
+            'messages' => $messages,
         ]);
 
     }
