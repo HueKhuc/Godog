@@ -4,6 +4,8 @@ namespace App\Controller;
 
 
 use App\Form\AdopterType;
+use App\Repository\AnnouncementRepository;
+use App\Repository\RequestRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\ModifPasswordType;
@@ -18,8 +20,9 @@ class AdopterController extends AbstractController
 {
     #[Route('/adopter', name: 'app_adopter')]
     #[ IsGranted('ROLE_ADOPTER')]
-    public function new(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher ): Response
+    public function modif(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher, RequestRepository $requestRepository ): Response
     {
+        /** @var \App\Entity\Adopter */
         $adopter = $this->getUser();
         $form = $this->createForm(AdopterType::class, $adopter);
         
@@ -53,9 +56,13 @@ class AdopterController extends AbstractController
             $this->addFlash('success', 'Password Changed');
             return $this->redirectToRoute('app_adopter');
         }
+        $requests=$requestRepository->findAnnouncementVisited($adopter);
+        
+
         return $this->render('adopter/index.html.twig', [
             "form" => $form->createView(),
             "formPassword"=>$formPassword->createView(),
+            "requests"=>$requests,
         ]);
     }
 }

@@ -39,6 +39,8 @@ class AdopterRepository extends ServiceEntityRepository
         }
     }
 
+   
+
     //    /**
 //     * @return Adopter[] Returns an array of Adopter objects
 //     */
