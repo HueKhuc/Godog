@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Announcement;
 use App\Entity\Message;
 use App\Entity\Request as AdoptionRequest;
 use App\Form\RequestType;
@@ -18,22 +19,23 @@ class RequestController extends AbstractController
     #[Route('/request/{id}', name: 'app_request_id', requirements: ['id' => "\d+"])]
     #[IsGranted('ROLE_ADOPTER')]
     public function new(
-        int $id,
+        Announcement $announcement,
         PhpRequest $phpRequest,
         EntityManagerInterface $em,
         AnnouncementRepository $repository,
     ): Response {
         $adopter = $this->getUser();
-        $announcement = $repository->find($id);
 
         $adoptionRequest = new AdoptionRequest();
-        // $adoptionRequest->setAnnouncement($announcement);
+        
+        $dogs = $announcement->getDogs();
         $adoptionRequest->setAdopter($adopter);
-
+        foreach ($dogs as $dog){
+            $adoptionRequest->addDog($dog);
+        }
+        
         // $adopter->addRequest($adoptionRequest);
         $announcement->addRequest($adoptionRequest);
-
-        $dogs = $announcement->getDogs();
 
         $message = new Message();
         $message->setUser($adopter);
@@ -50,7 +52,7 @@ class RequestController extends AbstractController
             $this->addFlash('success', 'Donnée insérée');
 
             return $this->redirectToRoute('app_request_id', [
-                'id' => $id,
+                'id' => $announcement->getId(),
             ]);
         }
 
