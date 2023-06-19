@@ -6,7 +6,12 @@
 {% block body %}
 	<div class="container mt-5">
 		{{ form_start(form) }}
-		{{ form_widget(form)}}
+		<div class="d-flex flex-row gap-5 align-items-center my-5">
+			<label for="" class="">Vous souhaitez adopter
+			</label>
+			{{ form_widget(form.dogs) }}
+		</div>
+		{{ form_widget(form.messages[0]) }}
 		<button type="submit" class="btn btn-primary">Envoyer</button>
 		{{ form_end(form) }}
 	</div>
