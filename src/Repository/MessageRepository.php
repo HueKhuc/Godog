@@ -27,7 +27,7 @@ class MessageRepository extends ServiceEntityRepository
 
         if ($flush) {
             $this->getEntityManager()->flush();
-        }
+        } 
     }
 
     public function remove(Message $entity, bool $flush = false): void
@@ -37,6 +37,15 @@ class MessageRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function showRecentMessages(): array {
+        return $this->createQueryBuilder('m')
+           ->orderBy('m.dateMessage', 'DESC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
     }
 
 //    /**
