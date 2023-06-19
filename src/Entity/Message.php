@@ -28,6 +28,9 @@ class Message
     #[ORM\JoinColumn(nullable: false)]
     private ?Request $request = null;
 
+    #[ORM\Column]
+    private ?bool $isSeen = null;
+
     public function __construct()
     {
         $this->dateMessage = new \DateTime();
@@ -82,6 +85,18 @@ class Message
     public function setRequest(?Request $request): self
     {
         $this->request = $request;
+
+        return $this;
+    }
+
+    public function isIsSeen(): ?bool
+    {
+        return $this->isSeen;
+    }
+
+    public function setIsSeen(bool $isSeen): self
+    {
+        $this->isSeen = $isSeen;
 
         return $this;
     }
