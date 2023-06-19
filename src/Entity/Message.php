@@ -89,7 +89,7 @@ class Message
         return $this;
     }
 
-    public function isSeen(): ?bool
+    public function getIsSeen(): ?bool
     {
         return $this->isSeen;
     }
