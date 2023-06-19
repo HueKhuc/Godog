@@ -18,23 +18,22 @@ class BreederController extends AbstractController
     #[Route('/breeder', name: 'app_breeder')]
     #[IsGranted('ROLE_BREEDER')]
     public function modifyBreed(
-        Request $request, 
-        EntityManagerInterface $entityManager, 
-        AnnouncementRepository $announcementRepository, 
+        Request $request,
+        EntityManagerInterface $entityManager,
+        AnnouncementRepository $announcementRepository,
         MessageRepository $messageRepository,
-        ): Response
-    {
-         /** @var \App\Entity\Breeder $breeder  */
-         $breeder = $this->getUser();
+    ): Response {
+        /** @var \App\Entity\Breeder $breeder  */
+        $breeder = $this->getUser();
 
         // fetch messages
-        $messages = $messageRepository->showRecentMessages();
+        $messages = $messageRepository->showRecentMessages($breeder);
 
-        // to reply to message
-      
+        // to get messages
+        // $breederMessages = $persistentCollection->getValues();
 
         // fetch breeders announcements  
-        $breederAnnouncements = $breeder->getAnnouncements();  
+        $breederAnnouncements = $breeder->getAnnouncements();
         // $breederAnnouncements = $announcementRepository->findBy(['breeder' => $breeder, ]);
 
 
@@ -53,6 +52,7 @@ class BreederController extends AbstractController
             'form' => $form->createView(),
             'breederAnnouncements' => $breederAnnouncements,
             'messages' => $messages,
+            // 'breederMessages' => $breederMessages,
         ]);
 
     }

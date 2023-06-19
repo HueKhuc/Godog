@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Breeder;
 use App\Entity\Message;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,7 +29,7 @@ class MessageRepository extends ServiceEntityRepository
 
         if ($flush) {
             $this->getEntityManager()->flush();
-        } 
+        }
     }
 
     public function remove(Message $entity, bool $flush = false): void
@@ -39,16 +41,21 @@ class MessageRepository extends ServiceEntityRepository
         }
     }
 
-    public function showRecentMessages(): array {
+    public function showRecentMessages(Breeder $user): array
+    {
         return $this->createQueryBuilder('m')
-           ->orderBy('m.dateMessage', 'DESC')
-           ->setMaxResults(10)
-           ->getQuery()
-           ->getResult()
-       ;
+            ->innerJoin('m.request', 'r')
+            ->innerJoin('r.announcement', 'a')
+            ->andWhere('a.breeder = :breeder')
+            ->setParameter('breeder', $user)
+            ->orderBy('m.dateMessage', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
-//    /**
+    //    /**
 //     * @return Message[] Returns an array of Message objects
 //     */
 //    public function findByExampleField($value): array
@@ -63,7 +70,7 @@ class MessageRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Message
+    //    public function findOneBySomeField($value): ?Message
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')

@@ -5,34 +5,40 @@
 
 {% block body %}
 	<h1 class="text-center">My Announcements</h1>
-	<div class="d-flex">
+	<div class="d-flex pb-5 mb-5">
 		<div class='col-4 container'>
-			<div class = "">
-			<h2 class='text-center'>Modify My information</h2>
-			{{ form_start(form) }}
-			{{ form_row(form.name)}}
-			{{ form_row(form.email)}}
-			<div class='text-center'>
-				<button type='submit'>Send</button>
-			</div>
-			{{ form_end(form) }}
+			<div class="">
+				<h2 class='text-center'>Modify My information</h2>
+				{{ form_start(form) }}
+				{{ form_row(form.name)}}
+				{{ form_row(form.email)}}
+				<div class='text-center'>
+					<button class="btn text-primary border font-bold" type='submit'>Modify</button>
+				</div>
+				{{ form_end(form) }}
 			</div>
 
 			{# recent messages #}
 			<div>
-			<h2 class="text-center pt-5">Recent Messages</h2>
-			{% for message in messages %}
-			<div class = "pt-5 mt-3">
-			<p class = "text-center">Send on: <span class = 'text-primary'>{{message.dateMessage |date("F jS \\a\\t g:ia")}}</span></p>
-			<p>{{message.text}}</p>
-			</div>
+				<h2 class="text-center pt-5">Recent Messages</h2>
+				{% for message in messages %}
+					<div class="pt-5 mt-5">
+						<p class="text-center">Send on:
+							<span class='text-primary'>{{message.dateMessage |date("F jS \\a\\t g:ia")}}</span>
+						</p>
+						{% if message.isSeen == 1 %}
+							<h4>{{message.text}}
+								<p class="text-success m-3">
+									Message seen</p>
+							</h4>
+						{% else %}
+							<h4>{{message.text}}
+								<p class="text-danger m-3">Message not seen</p>
+							</h4>
+						{% endif %}
+					</div>
 
-			{# reply #}
-			<div class="text-right" >
-			<p>reply message goes here</p>
-			<button type='submit'>Reply</button>
-			</div>
-			{% endfor %}
+				{% endfor %}
 
 			</div>
 
@@ -54,24 +60,55 @@
 						{% for dog in breederAnnouncement.dogs %}
 							<div>
 								{% if dog.isAdopted == 1 %}
-									<div><p class="font-weight-bold text-uppercase">Dog Name: {{dog.name}}</p><p class = "text-success font-italic"> Adopted</p> </div>
+									<div>
+										<p class="font-weight-bold text-uppercase">Dog Name:
+											{{dog.name}}</p>
+										<p class="text-success font-italic">
+											Adopted</p>
+									</div>
 								{% else %}
-									 <div><p class="font-weight-bold text-uppercase">Dog Name: {{dog.name}}</p><p class = "text-primary font-italic">Not Adopted</p> </div>
+									<div>
+										<p class="font-weight-bold text-uppercase">Dog Name:
+											{{dog.name}}</p>
+										<p class="text-primary font-italic">Not Adopted</p>
+									</div>
 								{% endif %}
+								{# show dog race #}
+								<p>
+									Race :
+									{% for race in dog.races %}
+										{{race.name}}
+									{% endfor %}
+								</p>
 							</div>
 						{% endfor %}
-
-						{# show dog race #}
-						{% for dog in breederAnnouncement.dogs %}
-							<p>
-								Race :
-								{% for race in dog.races %}
-									{{race.name}}
-								{% endfor %}
-							</p>
+						{# show senders messages and reply #}
+						<h2 class='text-primary'>Messages Sent</h2>
+						{% for request in breederAnnouncement.requests %}
+							<h3>Sender's Name:
+								{{ request.adopter.firstName }}</h3>
+							{% for message in request.messages %}
+								{% if message.isSeen == 1 %}
+									<h4>{{message.text}}
+										<p class="text-success m-3">
+											Message seen</p>
+									</h4>
+								{% else %}
+									<h4>{{message.text}}
+										<p class="text-danger m-3">Message not seen</p>
+									</h4>
+								{% endif %}
+							{% endfor %}
 						{% endfor %}
+						<div>
+							<a class="btn btn-lg btn-outline-dark p-2 m-2" href="">Reply</a>
+						</div>
+
+						{# modify the announcement #}
+						<div>
+							<a class="btn btn-lg btn-outline-dark p-2 m-2" {# href="{{path('app_announcement_modification, id: breederAnnouncement.id')}}" #}>Modify the Announcement</a>
+						</div>
 					</li>
-					<a class="btn btn-lg btn-outline-dark p-3 m-5" href="">Modify the Announcement</a>
 				{% endfor %}
 			</ul>
 		</div>
