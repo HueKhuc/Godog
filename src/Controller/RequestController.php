@@ -27,19 +27,16 @@ class RequestController extends AbstractController
         $adopter = $this->getUser();
 
         $adoptionRequest = new AdoptionRequest();
-        
-        $dogs = $announcement->getDogs();
         $adoptionRequest->setAdopter($adopter);
-        foreach ($dogs as $dog){
+        $dogs = $announcement->getDogs();
+        foreach ($dogs as $dog) {
             $adoptionRequest->addDog($dog);
         }
-        
-        // $adopter->addRequest($adoptionRequest);
+
         $announcement->addRequest($adoptionRequest);
 
         $message = new Message();
         $message->setUser($adopter);
-        // $message->setUser($this->getUser());
         $adoptionRequest->addMessage($message);
 
         $form = $this->createForm(RequestType::class, $adoptionRequest);
@@ -49,7 +46,7 @@ class RequestController extends AbstractController
             $em->persist($adoptionRequest);
             $em->flush();
 
-            $this->addFlash('success', 'Donnée insérée');
+            $this->addFlash('success', 'Demande envoyé');
 
             return $this->redirectToRoute('app_request_id', [
                 'id' => $announcement->getId(),
