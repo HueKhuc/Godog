@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnnouncementRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -32,13 +33,14 @@ class Announcement
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Request::class)]
     private Collection $requests;
 
-    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class)]
+    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class, cascade:['persist', 'remove'])]
     private Collection $dogs;
 
     public function __construct()
     {
         $this->requests = new ArrayCollection();
         $this->dogs = new ArrayCollection();
+        $this->dateAnnouncement = new DateTime();
     }
 
     public function getId(): ?int
