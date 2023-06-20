@@ -16,6 +16,7 @@ class MessageType extends AbstractType
             ->add('text', TextareaType::class,
             [
                 'label' => 'Votre message',
+                'attr' => ['rows' => 10],
             ])
         ;
     }
