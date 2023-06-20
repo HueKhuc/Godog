@@ -25,13 +25,13 @@ class RequestType extends AbstractType
                 'expanded' => true,
                 'required' => true,
                 'query_builder' => function (DogRepository $dogRepository) use ($announcement) {
-                    
                     $id = $announcement->getId();
                     return $dogRepository->createQueryBuilder('d')
                                 ->join('d.announcement','a')
                                 ->where('a.id = :val')
                                 ->setParameter('val', $id);
                 },
+                'by_reference' => false,
             ])
             ->add('messages', CollectionType::class, [
                 'entry_type' => MessageType::class,
@@ -43,7 +43,6 @@ class RequestType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Request::class,
-            // 'announcement' => $announcement,
         ]);
     }
 }
