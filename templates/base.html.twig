@@ -30,6 +30,9 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('app_breeder')}}">Breeder</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_announcement_create')}}">Create announcement</a>
+							</li>
 							{% endif %}
 							{% if is_granted('ROLE_ADOPTER') %}
 							<li class="nav-item">
