@@ -29,12 +29,9 @@ class BreederController extends AbstractController
         // fetch messages
         $messages = $messageRepository->showRecentMessages($breeder);
 
-        // to get messages
-        // $breederMessages = $persistentCollection->getValues();
-
         // fetch breeders announcements  
-        $breederAnnouncements = $breeder->getAnnouncements();
-        // $breederAnnouncements = $announcementRepository->findBy(['breeder' => $breeder, ]);
+        // $breederAnnouncements = $breeder->getAnnouncements();
+        $breederAnnouncements = $announcementRepository->findBy(['breeder' => $breeder, ]);
 
 
         // for updating the breeder info
