@@ -33,7 +33,7 @@
 			{% for request in requests %}
 				<tr>
 					<td class="text-center align-middle">{{request.id}}</td>
-                    <td class="text-center align-middle">{{request.messages|length }}</td>
+                    <td class="text-center align-middle">{{request.messages|length}}</td>
 					<td class="text-center align-middle">{{request.announcement.id}}</td>
                     
 					<td class="text-center align-middle">{% for dog in request.dogs %}{{dog.name}}{% endfor %}</td>

@@ -29,7 +29,7 @@ class Message
     private ?Request $request = null;
 
     #[ORM\Column]
-    private ?bool $isSeen = null;
+    private bool $isSeen = false;
 
     public function __construct()
     {
