@@ -34,7 +34,7 @@
 				<tr>
 					<td class="text-center align-middle">{{request.id}}</td>
                     <td class="text-center align-middle">{{request.messages|length}}</td>
-					<td class="text-center align-middle">{{request.announcement.title}}</td>
+					<td class="text-center align-middle"><a href="{{ path('app_announcement_id', {id: request.announcement.id}) }}">{{request.announcement.title}}</a></td>
                     
 					<td class="text-center align-middle">{% for dog in request.dogs %}{{dog.name}}{% endfor %}</td>
                     
