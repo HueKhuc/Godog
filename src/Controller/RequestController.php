@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Adopter;
+
+use App\Form\MessageType;
 use App\Entity\Announcement;
 use App\Entity\Message;
 use App\Entity\Request as AdoptionRequest;
@@ -11,6 +13,7 @@ use App\Repository\AnnouncementRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as PhpRequest;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -57,6 +60,18 @@ class RequestController extends AbstractController
 
         return $this->render('request/index.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+
+    #[Route('/request/{id}/reply', name: 'app_request_reply')]
+    public function messageReply (Request $request, int $id, EntityManagerInterface $entityManager): Response 
+    {
+          // fetch my message sent from database
+          $chatMessage = $entityManager->getRepository(Message::class)->find($id);
+        dd($chatMessage);
+        return $this->render('request/chat.html.twig', [
+            'chatMessage' => $chatMessage,
         ]);
     }
 }
