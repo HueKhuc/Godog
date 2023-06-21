@@ -38,7 +38,7 @@
                     
 					<td class="text-center align-middle">{% for dog in request.dogs %}{{dog.name}}{% endfor %}</td>
                     
-					<td class="text-center align-middle"></td>
+					<td class="text-center align-middle"><a href="{{ path('app_request_id', {id: request.announcement.id}) }}">No</a></td>
 				</tr>
 			{% endfor %}
 		</tbody>
