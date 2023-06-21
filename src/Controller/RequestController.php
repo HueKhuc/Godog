@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Adopter;
 use App\Entity\Announcement;
 use App\Entity\Message;
 use App\Entity\Request as AdoptionRequest;
@@ -27,6 +28,7 @@ class RequestController extends AbstractController
         $adopter = $this->getUser();
 
         $adoptionRequest = new AdoptionRequest();
+        /** @var Adopter $adopter */
         $adoptionRequest->setAdopter($adopter);
         $dogs = $announcement->getDogs();
         foreach ($dogs as $dog) {
