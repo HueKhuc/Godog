@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Dog;
 use App\Entity\Race;
+use App\Form\PictureType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,6 +29,15 @@ class DogType extends AbstractType
             'multiple' => true,
             'expanded' => true,
             ])
+            ->add('pictures', CollectionType::class,
+                [
+                    'entry_type' => PictureType::class,
+                    'label' => 'Images',
+                    'allow_add' => true,
+                    'by_reference' => false,  
+                    'entry_options' => ['label' => false],
+                ]
+            )
         ;
     }
 
