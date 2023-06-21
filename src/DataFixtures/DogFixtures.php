@@ -87,18 +87,20 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
 
         $races = $this->raceRepository->findAll();
         $announcements = $this->announcementRepository->findAll();
-
+        
         foreach ($dogsInfo as $dogInfo) {
             $dog = new Dog();
+            
             $dog->setName($dogInfo['name']);
             $dog->setBackground($dogInfo['background']);
             $dog->setDescription($dogInfo['description']);
-            $dog->setIsLOF($dogInfo['isLOF']);
+            /** @var array<string, bool> $dogInfo */
+            $dog->setIsLof($dogInfo['isLOF']);
             $dog->setIsTolerant($dogInfo['isTolerant']);
             $dog->setIsAdopted($dogInfo['isAdopted']);
 
             $nbRaces = 1;
-            if (!$dog->getIsLOF()) {
+            if (!$dog->getIsLof()) {
                 $nbRaces = mt_rand(1, 4);
             }
 
@@ -122,7 +124,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
             }
 
             $i = mt_rand(0, count($announcements) - 1);
-            $dog->setannouncement($announcements[$i]);
+            $dog->setAnnouncement($announcements[$i]);
 
             $manager->persist($dog);
         }

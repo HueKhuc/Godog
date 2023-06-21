@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Announcement;
+use App\Entity\Breeder;
 use App\Form\AnnouncementModificationType;
 use App\Repository\AnnouncementRepository;
 
@@ -22,7 +23,9 @@ class AnnouncementModificationController extends AbstractController
     {
         if (is_null($announcement)) {
             $announcement = new Announcement();
-            $announcement->setBreeder($this->getUser());
+            /** @var Breeder $breeder */
+            $breeder = $this->getUser();
+            $announcement->setBreeder($breeder);
         }
         $form = $this->createForm(AnnouncementModificationType::class, $announcement);
         $form->handleRequest($request);
