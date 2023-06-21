@@ -38,6 +38,7 @@ class AnnouncementModificationType extends AbstractType
                 'by_reference' => false,
                 'entry_options' => ['label' => false],
                 ])
+                
                 ;
     }
 
