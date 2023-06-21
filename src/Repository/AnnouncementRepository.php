@@ -47,9 +47,7 @@ class AnnouncementRepository extends ServiceEntityRepository
     public function showAnnouncementList(): array
     {
         return $this->createQueryBuilder('a')
-            ->select([ 
-                'a',
-            ])
+            ->select(['a'])
             ->orderBy('a.dateAnnouncement', 'DESC')
             ->setMaxResults(5)
             ->getQuery()

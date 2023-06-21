@@ -1,66 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home Page
-{% endblock %}
-
+{% block title %}Home Page{% endblock %}
 
 {% block body %}
-	<h1 class="text-center">Recent Announcements</h1>
-	<div>
-		<ul class="container text-center">
-
-			{% for announcement in announcements %}
-				<li class="mt-5 border bg">
-					<h3>{{ announcement.title }}</h3>
-
-					<p>Last updated:
-						{{ announcement.dateAnnouncement|date('Y-m-d H:i:s') }}</p>
-					{% for picture in announcement.pictures|slice(0,3) %}
-						<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
-					{% endfor %}
-
-					{# show dog name #}
-					{% for dog in announcement.dogs %}
-						<p>Dog name:
-							{{ dog.name }}</p>
-					{% endfor %}
-
-					{# show dog race #}
-					{% for dog in announcement.dogs %}
-						<p>
-							Dog Race :
-							{% for race in dog.races %}
-								{{race.name ~ ','}}
-							{% endfor %}
-						</p>
-					{% endfor %}
-				</li>
-			{% endfor %}
-		</ul>
+<div class="container">
+	<h1 class="text-center text-uppercase">Last announcements</h1>	
+{% for announcement in announcements %}
+	<div class="card mb-3" style="max-width: 540px;">
+  	<div class="row g-0 ">
+	{% for picture in announcement.pictures|slice(0,3) %}
+    	<div class="col-md-4">
+      	<img src="{{asset('images/dogs/' ~ picture.link )}}" class="img-fluid rounded-start" alt="Dog Pictures">
+    	</div>
+	{% endfor %}
+    		<div class="col-md-8">
+      		<div class="card-body">
+        		<h3 class="card-title">{{ announcement.title }}</h3>			
+						<p class="card-text">Dog(s) : {{ announcement.dogs|length }}</p>
+        		<p class="card-text">Race :{% for dog in announcement.dogs %}{% for race in dog.races %}	{{race.name }}{% endfor %}{% endfor %}</p>
+        		<p class="card-text"><small class="text-body-secondary">Last updated : {{ announcement.dateAnnouncement|date('Y-m-d') }}</small></p>
+						<a href="{{path('app_announcement_id', {id: announcement.id})}}" class="btn btn-lg btn-outline-dark p-2 m-3" role="button" aria-pressed="true">See this announcement</a>
+      		</div>
+    		</div>
+  		</div>
 	</div>
+{% endfor %}
+
 	<div class="d-flex justify-content-end">
 		<a href="{{path('app_announcements_list')}}" class="btn btn-lg btn-outline-dark p-3 m-5" role="button" aria-pressed="true">See all announcements</a>
 	</div>
-	<h1 class="text-center">ANNOUNCEMENT'S LIST</h1>
+
+	<h1 class="text-center text-uppercase">Breeder's list</h1>
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th scope="col" class="text-center">#</th>
-				<th scope="col" class="text-center">Breeder's name</th>
-				<th scope="col" class="text-center">Announces availables</th>
-				<th scope="col" class="text-center">Announces taken</th>
+				<th scope="col" class="text-center">Name</th>
+				<th scope="col" class="text-center">Announcements availables</th>
 			</tr>
 		</thead>
 		<tbody class="table-group-divider">
-
 			{% for breeder in breeders %}
 				<tr>
-					<th scope="row" class="align-middle"></th>
 					<td class="text-center align-middle">{{breeder.name}}</td>
 					<td class="text-center align-middle">{{breeder.nbAn}}</td>
-					<td class="text-center align-middle"></td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
+	</div>
 {% endblock body %}
