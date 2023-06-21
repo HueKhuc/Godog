@@ -9,22 +9,8 @@
 		{{ form_start(form) }}
 		{{ form_row(form.title) }}
 		{{ form_row(form.info) }}
-		{# <h2>{{ form_label(form.dogs) }}</h2> #}
-		{# <button type="button" class="add_item_link" data-collection-holder-class="dogs">Add a dog</button> #}
-		{# <ul class="dogs"
-						    data-index="{{ form.dogs|length > 0 ? form.dogs|last.vars.name + 1 : 0 }}"
-						    data-prototype="{{ form_widget(form.dogs.vars.prototype)|e('html_attr') }}">
-								{% for child in form.dogs %}
-									<li>{{ form_widget(child) }}</li>
-								{% endfor %}
-							</ul> #}
-		{% block collection_widget %}
-			{% for child in form.dogs %}
-				{{ form_widget(child) }}
-			{% endfor %}
-		{% endblock %}
-		{# <button type="submit"> Modify</button> #}
+		{{ form_row(form.dogs) }}
 		{{ form_end(form) }}
 		<div>
 
-	{% endblock %}
+		{% endblock %}
