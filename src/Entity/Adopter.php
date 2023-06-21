@@ -77,7 +77,7 @@ class Adopter extends User
     /**
      * Summary of setFirstName.
      *
-     * @param mixed $firstName
+     * @param string $firstName
      *
      * @return \App\Entity\Adopter
      */
@@ -99,7 +99,7 @@ class Adopter extends User
     /**
      * Summary of setLastName.
      *
-     * @param mixed $lastName
+     * @param string $lastName
      *
      * @return \App\Entity\Adopter
      */
@@ -121,7 +121,7 @@ class Adopter extends User
     /**
      * Summary of setCity.
      *
-     * @param mixed $city
+     * @param string $city
      *
      * @return \App\Entity\Adopter
      */
@@ -143,7 +143,7 @@ class Adopter extends User
     /**
      * Summary of setDepartment.
      *
-     * @param mixed $department
+     * @param string $department
      *
      * @return \App\Entity\Adopter
      */
@@ -165,7 +165,7 @@ class Adopter extends User
     /**
      * Summary of setPhone.
      *
-     * @param mixed $phone
+     * @param string $phone
      *
      * @return \App\Entity\Adopter
      */

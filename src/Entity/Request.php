@@ -20,7 +20,7 @@ class Request
 
     #[ORM\ManyToOne(inversedBy: 'requests')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?announcement $announcement = null;
+    private ?Announcement $announcement = null;
 
     #[ORM\ManyToMany(targetEntity: Dog::class, mappedBy: 'requests')]
     private Collection $dogs;
