@@ -17,6 +17,7 @@ class MessageType extends AbstractType
             [
                 'label' => 'Votre message',
                 'attr' => ['rows' => 10],
+                'required' => true,
             ])
         ;
     }
