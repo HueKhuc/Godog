@@ -38,7 +38,13 @@
                     
 					<td class="text-center align-middle">{% for dog in request.dogs %}{{dog.name}}{% endfor %}</td>
                     
-					<td class="text-center align-middle"><a href="{{ path('app_request_id', {id: request.announcement.id}) }}">No</a></td>
+					<td class="text-center align-middle"><a href="{{ path('reply', {id: request.announcement.id}) }}">
+					{% if request.isMessageRead(app.user) %}
+					yes
+					{% else %}
+					no
+					{% endif %}
+					</a></td>
 				</tr>
 			{% endfor %}
 		</tbody>
