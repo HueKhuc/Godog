@@ -4,7 +4,8 @@
 
 {% block body %}
 <div class="container">
-	<h1 class="text-center text-uppercase">Last announcements</h1>	
+	<h1 class="text-center text-uppercase">Last announcements</h1>
+	<div class="row gap-5">
 {% for announcement in announcements %}
 	<div class="card mb-3" style="max-width: 540px;">
   	<div class="row g-0 ">
@@ -25,8 +26,8 @@
   		</div>
 	</div>
 {% endfor %}
-
-	<div class="d-flex justify-content-end">
+</div>	
+	<div class="d-flex justify-content-center">
 		<a href="{{path('app_announcements_list')}}" class="btn btn-lg btn-outline-dark p-3 m-5" role="button" aria-pressed="true">See all announcements</a>
 	</div>
 
