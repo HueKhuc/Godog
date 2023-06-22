@@ -14,10 +14,16 @@ const addFormToCollection = (e) => {
   collectionHolder.appendChild(item);
 
   collectionHolder.dataset.index++;
+  triggerEvents();
 };
 
-document
-  .querySelectorAll('.add_item_link')
-  .forEach(btn => {
-      btn.addEventListener("click", addFormToCollection)
-  });
+const triggerEvents = function() {
+  document
+    .querySelectorAll('.add_item_link')
+    .forEach(btn => {
+        btn.removeEventListener('click', addFormToCollection);
+        btn.addEventListener("click", addFormToCollection)
+    });
+};
+
+triggerEvents();
