@@ -48,6 +48,7 @@ class MessageRepository extends ServiceEntityRepository
             ->innerJoin('m.request', 'r')
             ->innerJoin('r.announcement', 'a')
             ->andWhere('a.breeder = :breeder')
+            ->andWhere('m.user != :breeder')
             ->setParameter('breeder', $user)
             ->orderBy('m.dateMessage', 'DESC')
             ->setMaxResults(10)
@@ -56,7 +57,7 @@ class MessageRepository extends ServiceEntityRepository
         ;
     }
 
-//     public function fetchAdopterMessageById(Adopter $user, int $requestId): ?Message
+    //     public function fetchAdopterMessageById(Adopter $user, int $requestId): ?Message
 // {
 //     return $this->createQueryBuilder('m')
 //         ->innerJoin('m.request', 'r')

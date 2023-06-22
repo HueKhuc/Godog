@@ -24,6 +24,16 @@ class MessageController extends AbstractController
     ): Response {
         /** @var \App\Entity\Breeder $breeder  */
         $breeder = $this->getUser();
+
+        // to mark messages as seen or read
+        foreach ($request->getMessages() as $message) {
+            if ($message->getUser() != $breeder) {
+                $message->setIsSeen(true);
+
+                $messageRepository->save($message, true);
+            }
+        }
+
         $message = new Message();
         $message->setUser($breeder);
         $message->setRequest($request);
@@ -32,15 +42,17 @@ class MessageController extends AbstractController
             'method' => 'POST',
             // 'action' => $this->generateUrl('reply'),
         ]);
-        
+
         $form->handleRequest($httpRequest);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($message);
             $em->flush();
-            
+
             $this->addFlash('success', 'Message sent');
 
-            return $this->redirectToRoute('reply');
+            return $this->redirectToRoute('reply', [
+                'id' => $request->getId(),
+            ]);
         }
         return $this->render('message/index.html.twig', [
             'request' => $request,

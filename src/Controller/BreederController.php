@@ -31,7 +31,7 @@ class BreederController extends AbstractController
 
         // fetch breeders announcements  
         // $breederAnnouncements = $breeder->getAnnouncements();
-        $breederAnnouncements = $announcementRepository->findBy(['breeder' => $breeder, ]);
+        $breederAnnouncements = $announcementRepository->findBy(['breeder' => $breeder,]);
 
 
         // for updating the breeder info
