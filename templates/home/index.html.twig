@@ -10,7 +10,7 @@
   	<div class="row g-0 ">
 	{% for picture in announcement.pictures|slice(0,3) %}
     	<div class="col-md-4">
-      	<img src="{{asset('images/dogs/' ~ picture.link )}}" class="img-fluid rounded-start" alt="Dog Pictures">
+      	<img src="{{vich_uploader_asset(picture)}}" class="img-fluid rounded-start" alt="Dog Pictures">
     	</div>
 	{% endfor %}
     		<div class="col-md-8">

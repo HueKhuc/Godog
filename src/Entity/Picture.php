@@ -17,11 +17,9 @@ class Picture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Vich\UploadableField(mapping: 'dogs', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'dogs', fileNameProperty: 'link', size: 'imageSize')]
     private ?File $file = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $imageName = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
@@ -110,18 +108,6 @@ class Picture
         }
         return $this;
     }
-
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    public function setImageName(?string $imageName): self
-    {
-        $this->imageName = $imageName;
-        return $this;
-    }
-
 
     public function getImageSize(): ?int
     {
