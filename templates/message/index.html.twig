@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reply
+{% endblock title %}
+
+{% block body %}
+	<div class="container">
+		<section>
+			{% for message in request.messages %}
+				<h3>Sender's Name:
+					{{ message.user.email }}
+					(
+					{{- message.user.firstName|default('') }}
+					{{ message.user.lastName|default('') -}}
+					)</h3>
+				<p>{{message.text}}</p>
+			{% endfor %}
+		</section>
+		<section>
+
+			{{ form_start(form) }}
+			<div class="d-flex flex-row gap-5 align-items-center my-5">
+				<label for="" class="">Vous souhaitez adopter
+				</label>
+				{{ form_widget(form.text) }}
+			</div>
+			<button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+			{{ form_end(form) }}
+		</section>
+
+	</div>
+{% endblock body %}

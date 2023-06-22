@@ -3,14 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Adopter;
+
+use App\Form\MessageType;
 use App\Entity\Announcement;
 use App\Entity\Message;
 use App\Entity\Request as AdoptionRequest;
 use App\Form\RequestType;
 use App\Repository\AnnouncementRepository;
+use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as PhpRequest;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;

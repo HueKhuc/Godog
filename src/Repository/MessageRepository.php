@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Adopter;
 use App\Entity\Breeder;
 use App\Entity\Message;
 use App\Entity\User;
@@ -47,6 +48,7 @@ class MessageRepository extends ServiceEntityRepository
             ->innerJoin('m.request', 'r')
             ->innerJoin('r.announcement', 'a')
             ->andWhere('a.breeder = :breeder')
+            ->andWhere('m.user != :breeder')
             ->setParameter('breeder', $user)
             ->orderBy('m.dateMessage', 'DESC')
             ->setMaxResults(10)
@@ -54,6 +56,20 @@ class MessageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    //     public function fetchAdopterMessageById(Adopter $user, int $requestId): ?Message
+// {
+//     return $this->createQueryBuilder('m')
+//         ->innerJoin('m.request', 'r')
+//         ->innerJoin('r.announcement', 'a')
+//         ->andWhere('a.adopter = :adopter')
+//         ->andWhere('m.id = :requestId')  // Add this line to filter by message ID
+//         ->setParameter('adopter', $user)
+//         ->setParameter('requestId', $requestId)  // Set the value of the message ID
+//         ->getQuery()
+//         ->getOneOrNullResult();
+// }
+
 
     //    /**
 //     * @return Message[] Returns an array of Message objects
