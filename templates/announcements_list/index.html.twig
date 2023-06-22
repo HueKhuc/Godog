@@ -15,7 +15,7 @@
 		<div class="border rounded col-5 p-3">
 			<div class="d-flex flex-row gap-2 justify-content-center">
 				{% for picture in announcement.pictures|slice(0,3) %}
-					<img class="" src="{{asset('images/dogs/' ~ picture.link )}}" alt="" style="width: 120px ; height: 150px">
+					<img class="" src="{{ vich_uploader_asset(picture) }}" alt="" style="width: 120px ; height: 150px">
 				{% endfor %}
 			</div>
 			<div class="text-center">

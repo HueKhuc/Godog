@@ -37,7 +37,6 @@ class AnnouncementModificationController extends AbstractController
         }
 
         return $this->render('announcement_modification/index.html.twig', [
-
             'form' => $form->createView(),
         ]);
     }

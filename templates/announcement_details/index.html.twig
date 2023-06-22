@@ -47,7 +47,7 @@
 				</article>
 				<div class="d-flex">
 					{% for picture in announcement.pictures|slice(0,5) %}
-						<img class="" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
+						<img class="" src="{{ vich_uploader_asset(picture) }}" alt="Announcement dog photo">
 					{% endfor %}
 				</div>
 

@@ -62,7 +62,7 @@
 						<p>Last updated:
 							{{ breederAnnouncement.dateAnnouncement|date('Y-m-d H:i:s') }}</p>
 						{% for picture in breederAnnouncement.pictures|slice(0,3) %}
-							<img class="p-5" src="{{asset('images/dogs/' ~ picture.link )}}" alt="Announcement dog photo">
+							<img class="p-5" src="{{vich_uploader_asset(picture)}}" alt="Announcement dog photo">
 						{% endfor %}
 						{# show dog name #}
 						{% for dog in breederAnnouncement.dogs %}

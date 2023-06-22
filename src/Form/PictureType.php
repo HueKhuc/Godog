@@ -13,12 +13,11 @@ class PictureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('title')
-            // ->add('description')
+            ->add('title')
+            ->add('description')
             ->add('file', VichImageType::class,[
                 'label' => 'Image'
             ])
-            // ->add('dog')
         ;
     }
 
