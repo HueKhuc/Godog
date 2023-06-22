@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Breeder;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,17 +16,21 @@ class BreederType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        // create form field as per demand (example input, textarea)
+
+            // create form field as per demand (example input, textarea)
             ->add(
                 'email', EmailType::class,
                 [
                     'required' => true,
-                ])
-            ->add('name', TextType::class,
-            [
-                'required' => true,
-            ])
-            ;
+                ]
+            )
+            ->add(
+                'name', TextType::class,
+                [
+                    'required' => true,
+                ]
+            );
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
