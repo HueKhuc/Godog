@@ -12,10 +12,18 @@
 				{{ form_start(form) }}
 				{{ form_row(form.name)}}
 				{{ form_row(form.email)}}
+
 				<div class='text-center'>
 					<button class="btn text-primary border font-bold" type='submit'>Modify</button>
 				</div>
 				{{ form_end(form) }}
+				{# modify password form #}
+				{{ form_start(formPassword) }}
+				{{form_widget(formPassword)}}
+				<div class='text-center'>
+					<button class="btn text-primary border font-bold" type='submit'>Modify</button>
+				</div>
+				{{ form_start(formPassword) }}
 			</div>
 
 			{# recent messages #}
