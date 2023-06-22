@@ -22,19 +22,22 @@ class DogType extends AbstractType
             ->add('isTolerant')
             ->add('isLof')
             ->add('isAdopted')
-            ->add('races', EntityType::class,
-            [
-            'choice_label' => 'name',
-            'class' => Race::class,
-            'multiple' => true,
-            'expanded' => true,
-            ])
-            ->add('pictures', CollectionType::class,
+            ->add(
+                'races', EntityType::class,
+                [
+                    'choice_label' => 'name',
+                    'class' => Race::class,
+                    'multiple' => true,
+                    'expanded' => true,
+                ]
+            )
+            ->add(
+                'pictures', CollectionType::class,
                 [
                     'entry_type' => PictureType::class,
                     'label' => 'Images',
                     'allow_add' => true,
-                    'by_reference' => false,  
+                    'by_reference' => false,
                     'entry_options' => ['label' => false],
                 ]
             )
