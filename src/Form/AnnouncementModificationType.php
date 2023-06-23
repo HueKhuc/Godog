@@ -20,26 +20,30 @@ class AnnouncementModificationType extends AbstractType
             ->add(
                 'title', TextType::class,
                 [
-                'label' => 'title',
-                'required' => true,
-                ])
+                    'label' => 'title',
+                    'required' => true,
+                ]
+            )
             ->add(
                 'info', TextType::class,
                 [
-                'label' => 'info',
-                'required' => true,
-                ])
+                    'label' => 'info',
+                    'required' => true,
+                ]
+            )
             ->add(
                 'dogs', CollectionType::class,
                 [
-                'entry_type' => DogType::class,
-                'label' => 'dogs',
-                'allow_add' => true,
-                'by_reference' => false,
-                'entry_options' => ['label' => false],
-                ])
-                
-                ;
+                    'entry_type' => DogType::class,
+                    'prototype_name' => '__dogs__',
+                    'label' => 'dogs',
+                    'allow_add' => true,
+                    'by_reference' => false,
+                    'entry_options' => ['label' => false],
+                ]
+            )
+
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

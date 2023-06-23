@@ -1,15 +1,18 @@
 const addFormToCollection = (e) => {
-  const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+  const collectionHolder = document.querySelector(
+    "." + e.currentTarget.dataset.collectionHolderClass
+  );
 
-  const item = document.createElement('li');
+  const item = document.createElement("li");
 
-  item.innerHTML = collectionHolder
-    .dataset
-    .prototype
-    .replace(
-      /__name__/g,
-      collectionHolder.dataset.index
-    );
+  let protoName = collectionHolder.dataset.prototypeName;
+
+  var regex = new RegExp(protoName, "g");
+
+  item.innerHTML = collectionHolder.dataset.prototype.replace(
+    regex,
+    collectionHolder.dataset.index
+  );
 
   collectionHolder.appendChild(item);
 
@@ -17,13 +20,11 @@ const addFormToCollection = (e) => {
   triggerEvents();
 };
 
-const triggerEvents = function() {
-  document
-    .querySelectorAll('.add_item_link')
-    .forEach(btn => {
-        btn.removeEventListener('click', addFormToCollection);
-        btn.addEventListener("click", addFormToCollection)
-    });
+const triggerEvents = function () {
+  document.querySelectorAll(".add_item_link").forEach((btn) => {
+    btn.removeEventListener("click", addFormToCollection);
+    btn.addEventListener("click", addFormToCollection);
+  });
 };
 
 triggerEvents();

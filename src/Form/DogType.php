@@ -36,6 +36,7 @@ class DogType extends AbstractType
                 [
                     'entry_type' => PictureType::class,
                     'label' => 'Images',
+                    'prototype_name' => '__pictures__',
                     'allow_add' => true,
                     'by_reference' => false,
                     'entry_options' => ['label' => false],
