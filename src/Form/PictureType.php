@@ -15,8 +15,9 @@ class PictureType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('file', VichImageType::class,[
-                'label' => 'Image'
+            ->add('file', VichImageType::class, [
+                'label' => 'Image',
+                'required' => false,
             ])
         ;
     }
