@@ -40,10 +40,10 @@ class Adopter extends User
      */
     private ?string $phone = null;
 
-    #[ORM\OneToMany(mappedBy: 'adopter', targetEntity: Request::class)]
     /**
-     * Summary of requests.
+     * @var Collection<int, Request>
      */
+    #[ORM\OneToMany(mappedBy: 'adopter', targetEntity: Request::class)]
     private Collection $requests;
 
     /**
