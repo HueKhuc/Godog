@@ -37,7 +37,7 @@ class HashPasswordSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if (!($entity instanceof User || ($entity->getPlainPassword()))) {
+        if (!($entity instanceof User || $entity->getPlainPassword())) {
             return;
         }
 

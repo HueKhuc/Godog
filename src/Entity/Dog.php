@@ -14,11 +14,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: DogRepository::class)]
 #[Vich\Uploadable]
-
 #[ApiResource(
     operations: [
         new Get(),
-        new GetCollection()
+        new GetCollection(),
     ]
 )]
 class Dog

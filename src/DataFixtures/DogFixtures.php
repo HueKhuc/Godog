@@ -90,11 +90,11 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
         /** @var array<string, string|bool> $dogInfo */
         foreach ($dogsInfo as $dogInfo) {
             $dog = new Dog();
-            
+
             $dog->setName($dogInfo['name']);
             $dog->setBackground($dogInfo['background']);
             $dog->setDescription($dogInfo['description']);
-            
+
             $dog->setIsLof($dogInfo['isLOF']);
             $dog->setIsTolerant($dogInfo['isTolerant']);
             $dog->setIsAdopted($dogInfo['isAdopted']);

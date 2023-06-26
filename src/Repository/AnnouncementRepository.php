@@ -60,9 +60,7 @@ class AnnouncementRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('a')
             ->leftJoin('a.dogs', 'd');
 
-
         if (!is_null($filter->getRace())) {
-
             $qb
                 ->innerJoin('d.races', 'r')
                 ->andWhere('r.id = :race')
@@ -70,7 +68,6 @@ class AnnouncementRepository extends ServiceEntityRepository
         }
 
         if ($filter->getIsLof()) {
-
             $qb
                 ->andWhere('d.isLof = :lof')
                 ->setParameter('lof', $filter->getIsLof());
@@ -81,8 +78,6 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
-
 
     // public function findOneById($value): ?Announcement
     // {

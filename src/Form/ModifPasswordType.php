@@ -2,8 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Adopter;
-use App\Entity\Breeder;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;

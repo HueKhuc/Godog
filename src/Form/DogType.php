@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Dog;
 use App\Entity\Race;
-use App\Form\PictureType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;

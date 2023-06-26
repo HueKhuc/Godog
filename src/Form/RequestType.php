@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Dog;
 use App\Entity\Request;
 use App\Repository\DogRepository;
-use EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -26,8 +25,9 @@ class RequestType extends AbstractType
                 'required' => true,
                 'query_builder' => function (DogRepository $dogRepository) use ($announcement) {
                     $id = $announcement->getId();
+
                     return $dogRepository->createQueryBuilder('d')
-                                ->join('d.announcement','a')
+                                ->join('d.announcement', 'a')
                                 ->where('a.id = :val')
                                 ->setParameter('val', $id);
                 },

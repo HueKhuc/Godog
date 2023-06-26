@@ -40,12 +40,13 @@ class RequestRepository extends ServiceEntityRepository
         }
     }
 
-    public function findAnnouncementVisited(Adopter $adopter) :array
+    public function findAnnouncementVisited(Adopter $adopter): array
     {
-        $qb= $this->createQueryBuilder('r')
+        $qb = $this->createQueryBuilder('r')
         ->andWhere('r.adopter= :adopter')
-        ->setParameter(':adopter',$adopter)
+        ->setParameter(':adopter', $adopter)
         ;
+
         return $qb
         ->getQuery()
         ->getResult();

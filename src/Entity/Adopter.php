@@ -77,8 +77,6 @@ class Adopter extends User
     /**
      * Summary of setFirstName.
      *
-     * @param string $firstName
-     *
      * @return \App\Entity\Adopter
      */
     public function setFirstName(string $firstName): self
@@ -98,8 +96,6 @@ class Adopter extends User
 
     /**
      * Summary of setLastName.
-     *
-     * @param string $lastName
      *
      * @return \App\Entity\Adopter
      */
@@ -121,8 +117,6 @@ class Adopter extends User
     /**
      * Summary of setCity.
      *
-     * @param string $city
-     *
      * @return \App\Entity\Adopter
      */
     public function setCity(string $city): self
@@ -143,8 +137,6 @@ class Adopter extends User
     /**
      * Summary of setDepartment.
      *
-     * @param string $department
-     *
      * @return \App\Entity\Adopter
      */
     public function setDepartment(string $department): self
@@ -164,8 +156,6 @@ class Adopter extends User
 
     /**
      * Summary of setPhone.
-     *
-     * @param string $phone
      *
      * @return \App\Entity\Adopter
      */
