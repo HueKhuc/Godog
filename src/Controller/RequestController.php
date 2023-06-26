@@ -25,10 +25,10 @@ class RequestController extends AbstractController
         EntityManagerInterface $em,
         AnnouncementRepository $repository,
     ): Response {
+        /** @var Adopter $adopter */
         $adopter = $this->getUser();
 
         $adoptionRequest = new AdoptionRequest();
-        /* @var Adopter $adopter */
         $adoptionRequest->setAdopter($adopter);
         $dogs = $announcement->getDogs();
         foreach ($dogs as $dog) {
