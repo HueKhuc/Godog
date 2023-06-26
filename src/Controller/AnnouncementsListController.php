@@ -21,7 +21,6 @@ class AnnouncementsListController extends AbstractController
 
         $announcements = $announcementRepository->findByFilter($filter);
 
-
         return $this->render('announcements_list/index.html.twig', [
             'announcements' => $announcements,
             'form' => $form->createView(),

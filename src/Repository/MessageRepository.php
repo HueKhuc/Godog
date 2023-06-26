@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Adopter;
 use App\Entity\Breeder;
 use App\Entity\Message;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -69,7 +68,6 @@ class MessageRepository extends ServiceEntityRepository
 //         ->getQuery()
 //         ->getOneOrNullResult();
 // }
-
 
     //    /**
 //     * @return Message[] Returns an array of Message objects

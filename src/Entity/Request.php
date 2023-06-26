@@ -121,13 +121,14 @@ class Request
         return $this;
     }
 
-    public function isMessageRead( User $user ): bool
+    public function isMessageRead(User $user): bool
     {
-        foreach ( $this->getMessages() as $message ) {
-                if($message->getUser() == $user) {
-                    return $message->getIsSeen();
-                }
-        } 
+        foreach ($this->getMessages() as $message) {
+            if ($message->getUser() == $user) {
+                return $message->getIsSeen();
+            }
+        }
+
         return false;
     }
 }

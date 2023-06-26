@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Message;
 use App\Entity\Request;
 use App\Form\MessageType;
-use App\Repository\AnnouncementRepository;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +21,7 @@ class MessageController extends AbstractController
         MessageRepository $messageRepository,
         EntityManagerInterface $em
     ): Response {
-        /** @var \App\Entity\Breeder $breeder  */
+        /** @var \App\Entity\Breeder $breeder */
         $breeder = $this->getUser();
 
         // to mark messages as seen or read
@@ -54,6 +53,7 @@ class MessageController extends AbstractController
                 'id' => $request->getId(),
             ]);
         }
+
         return $this->render('message/index.html.twig', [
             'request' => $request,
             'form' => $form->createView(),

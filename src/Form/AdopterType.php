@@ -14,35 +14,34 @@ class AdopterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', 
-            EmailType::class,
-            [
-                'required' => true,
-            ]
+            ->add('email',
+                EmailType::class,
+                [
+                    'required' => true,
+                ]
             )
             ->add('firstName',
-            TextType::class,
-            [
-                'required' => true,
-            ])
+                TextType::class,
+                [
+                    'required' => true,
+                ])
             ->add('lastName',
-            TextType::class,
-            [
-                'required' => true,
-            ])
+                TextType::class,
+                [
+                    'required' => true,
+                ])
             ->add('city',
-            TextType::class,
-            [
-                'required' => true,
-            ])
+                TextType::class,
+                [
+                    'required' => true,
+                ])
             ->add('department',
-            TextType::class,
-            [
-                'required' => true,
-            ])
+                TextType::class,
+                [
+                    'required' => true,
+                ])
             ->add('phone')
-            
-        
+
         ;
     }
 
@@ -50,7 +49,6 @@ class AdopterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Adopter::class,
-        
         ]);
     }
 }

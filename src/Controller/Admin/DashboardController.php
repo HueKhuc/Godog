@@ -49,7 +49,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Breeders', 'fas fa-list', Breeder::class);
         yield MenuItem::linkToCrud('Adopters', 'fas fa-list', Adopter::class);
         yield MenuItem::linkToCrud('Admins', 'fas fa-list', Admin::class);
-        yield MenuItem::linkToUrl('API','fas fa-list', $this->generateUrl('api_entrypoint'));
+        yield MenuItem::linkToUrl('API', 'fas fa-list', $this->generateUrl('api_entrypoint'));
         yield MenuItem::linkToUrl('Retour au site', 'fas fa-list', $this->generateUrl('homePage'));
     }
 }

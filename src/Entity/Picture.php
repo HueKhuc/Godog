@@ -20,7 +20,6 @@ class Picture
     #[Vich\UploadableField(mapping: 'dogs', fileNameProperty: 'link', size: 'imageSize')]
     private ?File $file = null;
 
-
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
@@ -106,6 +105,7 @@ class Picture
             // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTimeImmutable();
         }
+
         return $this;
     }
 
@@ -117,6 +117,7 @@ class Picture
     public function setImageSize(?int $imageSize): self
     {
         $this->imageSize = $imageSize;
+
         return $this;
     }
 }
