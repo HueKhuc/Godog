@@ -29,6 +29,7 @@ class RequestType extends AbstractType
                     return $dogRepository->createQueryBuilder('d')
                                 ->join('d.announcement', 'a')
                                 ->where('a.id = :val')
+                                ->andWhere('d.isAdopted = false')
                                 ->setParameter('val', $id);
                 },
                 'by_reference' => false,

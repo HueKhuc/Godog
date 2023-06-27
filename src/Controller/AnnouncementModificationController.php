@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller; 
 
 use App\Entity\Announcement;
 use App\Entity\Breeder;
@@ -19,12 +19,19 @@ class AnnouncementModificationController extends AbstractController
     #[IsGranted('ROLE_BREEDER')]
     public function index(Request $request, AnnouncementRepository $repository, Announcement $announcement = null): Response
     {
+        /** @var Breeder $breeder */
+        $breeder = $this->getUser();
         if (is_null($announcement)) {
             $announcement = new Announcement();
-            /** @var Breeder $breeder */
-            $breeder = $this->getUser();
             $announcement->setBreeder($breeder);
         }
+
+        if ($announcement->getBreeder() != $breeder) {
+
+            $this->addFlash('danger', 'Access denied');
+            return $this->redirectToRoute('app_breeder');
+        }
+
         $form = $this->createForm(AnnouncementModificationType::class, $announcement);
         $form->handleRequest($request);
 

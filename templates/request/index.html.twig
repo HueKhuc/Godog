@@ -1,23 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RequestController!
+{% block title %}Request a dog
 {% endblock %}
 
 {% block body %}
 	<div class="container mt-5">
-			{% for message in app.flashes('success') %}
-				<div class="flash-success alert alert-success" role="alert">
-					{{ message }}
-				</div>
-			{% endfor %}
 		{{ form_start(form) }}
 		<div class="d-flex flex-row gap-5 align-items-center my-5">
-			<label for="" class="">Vous souhaitez adopter
+			<label for="" class="">You want to adopt
 			</label>
 			{{ form_widget(form.dogs) }}
 		</div>
 		{{ form_widget(form.messages[0], {'attr': {'rows': 5}}) }}
-		<button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+		<button type="submit" class="btn btn-primary btn-lg">Send</button>
 		{{ form_end(form) }}
 	</div>
 {% endblock %}

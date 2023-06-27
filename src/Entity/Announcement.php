@@ -176,4 +176,14 @@ class Announcement
 
         return $pictures;
     }
+
+    public function isTaken(): bool
+    {
+        foreach ($this->getDogs() as $dog) {
+            if (!$dog->getIsAdopted()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
