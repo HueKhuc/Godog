@@ -209,4 +209,15 @@ class Adopter extends User
 
         return $this;
     }
+
+    public function hasAlreadyRequested(Announcement $announcement): bool
+    {
+        /** @var Request $request */
+        foreach ($this->requests as $request) {
+            if ($request->getAnnouncement()->getId() == $announcement->getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

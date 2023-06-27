@@ -1,52 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home Page{% endblock %}
+{% block title %}Home Page
+{% endblock %}
 
 {% block body %}
-<div class="container">
-	<h1 class="text-center text-uppercase">Last announcements</h1>
-	<div class="row gap-5">
-{% for announcement in announcements %}
-	<div class="card mb-3" style="max-width: 540px;">
-  	<div class="row g-0 ">
-	{% for picture in announcement.pictures|slice(0,3) %}
-    	<div class="col-md-4">
-      	<img src="{{vich_uploader_asset(picture)}}" class="img-fluid rounded-start" alt="Dog Pictures">
-    	</div>
-	{% endfor %}
-    		<div class="col-md-8">
-      		<div class="card-body">
-        		<h3 class="card-title">{{ announcement.title }}</h3>			
-						<p class="card-text">Dog(s) : {{ announcement.dogs|length }}</p>
-        		<p class="card-text">Race :{% for dog in announcement.dogs %}{% for race in dog.races %}	{{race.name }}{% endfor %}{% endfor %}</p>
-        		<p class="card-text"><small class="text-body-secondary">Last updated : {{ announcement.dateAnnouncement|date('Y-m-d') }}</small></p>
-						<a href="{{path('app_announcement_id', {id: announcement.id})}}" class="btn btn-lg btn-outline-dark p-2 m-3" role="button" aria-pressed="true">See this announcement</a>
-      		</div>
-    		</div>
-  		</div>
-	</div>
-{% endfor %}
-</div>	
-	<div class="d-flex justify-content-center">
-		<a href="{{path('app_announcements_list')}}" class="btn btn-lg btn-outline-dark p-3 m-5" role="button" aria-pressed="true">See all announcements</a>
-	</div>
-
-	<h1 class="text-center text-uppercase">Breeder's list</h1>
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th scope="col" class="text-center">Name</th>
-				<th scope="col" class="text-center">Announcements availables</th>
-			</tr>
-		</thead>
-		<tbody class="table-group-divider">
-			{% for breeder in breeders %}
-				<tr>
-					<td class="text-center align-middle">{{breeder.name}}</td>
-					<td class="text-center align-middle">{{breeder.nbAn}}</td>
-				</tr>
+	<div class="container">
+		<h1 class="text-center text-uppercase">Last announcements</h1>
+		<div class="row gap-5">
+			{% for announcement in announcements %}
+				<div class="card mb-3" style="max-width: 540px;">
+					<div class="row g-0 ">
+						{% for picture in announcement.pictures|slice(0,3) %}
+							<div class="col-md-4">
+								<img src="{{vich_uploader_asset(picture)}}" class="img-fluid rounded-start" alt="Dog Pictures">
+							</div>
+						{% endfor %}
+						<div class="col-md-8">
+							<div class="card-body">
+								<h3 class="card-title">{{ announcement.title }}</h3>
+								<p class="card-text">Dog(s) :
+									{{ announcement.dogs|length }}</p>
+								<p class="card-text">Race :
+									{% for dog in announcement.dogs %}
+										{% for race in dog.races %}
+											{{race.name }}
+										{% endfor %}
+									{% endfor %}
+								</p>
+								<p class="card-text">
+									<small class="text-body-secondary">Last updated :
+										{{ announcement.dateAnnouncement|date('Y-m-d') }}</small>
+								</p>
+								<a href="{{path('app_announcement_id', {id: announcement.id})}}" class="btn btn-lg btn-outline-dark p-2 m-3" role="button" aria-pressed="true">See this announcement</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			{% endfor %}
-		</tbody>
-	</table>
+		</div>
+		<div class="d-flex justify-content-center">
+			<a href="{{path('app_announcements_list')}}" class="btn btn-lg btn-outline-dark p-3 m-5" role="button" aria-pressed="true">See all announcements</a>
+		</div>
+
+		<h1 class="text-center text-uppercase">Breeder's list</h1>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th scope="col" class="text-center">Name</th>
+					<th scope="col" class="text-center">Announcements availables</th>
+					<th scope="col" class="text-center">Announcements taken</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for breeder in breeders %}
+					{% set takenCount = breeder.takenAnnouncements|length %}
+					<tr>
+						<td class="text-center align-middle">{{breeder.name}}</td>
+						<td class="text-center align-middle">{{ breeder.announcements|length - takenCount }}</td>
+						<td class="text-center align-middle">{{ takenCount }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 {% endblock body %}

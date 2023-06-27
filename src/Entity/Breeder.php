@@ -74,4 +74,11 @@ class Breeder extends User
 
         return $this;
     }
+
+    public function getTakenAnnouncements(): Collection
+    {
+        return $this->announcements->filter(function (Announcement $announcement) {
+            return $announcement->isTaken();
+        });
+    }
 }

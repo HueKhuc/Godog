@@ -73,9 +73,8 @@ class BreederRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('breeder')
 
-            ->select('breeder.name', 'count(announcement.id) AS nbAn')
+            ->select('breeder')
             ->leftJoin('breeder.announcements', 'announcement')
-            ->groupBy('breeder.name')
             ->orderBy('announcement.dateAnnouncement')
             ->getQuery()
             ->getResult();

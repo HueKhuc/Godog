@@ -27,6 +27,14 @@ class RequestController extends AbstractController
     ): Response {
         /** @var Adopter $adopter */
         $adopter = $this->getUser();
+        $hasRequested = $adopter->hasAlreadyRequested($announcement);
+
+        if ($hasRequested) {
+            $this->addFlash('danger', 'Request already sent');
+            return $this->redirectToRoute('app_announcement_id', [
+                'id' => $announcement->getId(),
+            ]);
+        }
 
         $adoptionRequest = new AdoptionRequest();
         $adoptionRequest->setAdopter($adopter);
@@ -48,9 +56,9 @@ class RequestController extends AbstractController
             $em->persist($adoptionRequest);
             $em->flush();
 
-            $this->addFlash('success', 'Demande envoyé');
+            $this->addFlash('success', 'Request sent');
 
-            return $this->redirectToRoute('app_request_id', [
+            return $this->redirectToRoute('app_announcement_id', [
                 'id' => $announcement->getId(),
             ]);
         }
